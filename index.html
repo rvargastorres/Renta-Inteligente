@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Renta Inteligente - Advanced Training</title>
+    <!-- Tailwind CSS para diseño rápido y ultra-moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js para visualización de datos de alto impacto -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome para iconos limpios y profesionales -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         :root {
             --stripe-purple: #635BFF;
@@ -21,16 +26,6 @@
             background-color: var(--neutral-bg);
             color: var(--graphite);
             scroll-behavior: smooth;
-        }
-
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 400px;
         }
 
         .glass-card {
@@ -65,32 +60,18 @@
             width: 100%;
         }
 
-        @media (min-width: 768px) {
-            .chart-container { height: 350px; }
+        /* Animación de latido para el botón de WhatsApp y CTA */
+        @keyframes pulse-gentle {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 212, 106, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 4px 25px rgba(0, 212, 106, 0.6); }
+        }
+        .pulse-whatsapp {
+            animation: pulse-gentle 2s infinite ease-in-out;
         }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <!-- Chosen Palette: Modern Finance Neutral (Warm Neutrals + Stripe Purple + Success Green) -->
-    <!-- Application Structure Plan: 
-        1. Sticky Navigation: For quick access to the core value propositions (Method, Calculator, Curriculum).
-        2. Interactive Hero: Focus on immediate impact and the 99 USD offer.
-        3. The Reality Dashboard: A Chart.js comparison between traditional real estate vs Rent to Rent to prove scalability.
-        4. Method Explorer: Interactive tabs for the 3 sub-models (Residencial, Turístico, Escalado).
-        5. Interactive ROI Calculator: A tool for users to input estimated costs and see potential monthly cash flow.
-        6. Curriculum Roadmap: A vertical interactive stepper showing the 7 modules.
-        7. Trust & Conversion: Final CTA with urgency and links to Stripe/Forms.
-        WHY: This structure moves the user from 'Problem Awareness' (Chart) to 'Practical Application' (Calculator) to 'Solution Details' (Curriculum), maximizing trust and conversion.
-    -->
-    <!-- Visualization & Content Choices: 
-        - Comparison Bar Chart: Traditional Yield vs Rent to Rent (Chart.js) to show ROI difference visually.
-        - ROI Calculator: JS-based logic to handle user inputs (Rent, Cleaning, Income) and output Cash Flow.
-        - Interactive Module Stepper: Vertical list that expands/highlights current module context.
-        - Pill-based Tabs: For selecting different investment modalities.
-        - NO SVG used for icons; using Unicode/CSS/Canvas where needed.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-card border-b">
@@ -98,38 +79,44 @@
             <div class="font-bold text-xl tracking-tight text-indigo-700 flex items-center">
                 <span class="mr-2">⚡</span> RENTA INTELIGENTE
             </div>
-            <div class="hidden md:flex space-x-8 font-medium text-sm">
+            <div class="hidden md:flex space-x-8 font-medium text-sm items-center">
                 <a href="#metodo" class="nav-link">El Método</a>
+                <a href="#comparativa" class="nav-link">¿Por qué Renta Inteligente?</a>
                 <a href="#calculadora" class="nav-link">Calculadora</a>
                 <a href="#programa" class="nav-link">Programa</a>
-                <a href="#acceder" class="bg-[#635BFF] text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition shadow-sm">Acceder (99 USD)</a>
+                <a href="#faq" class="nav-link">Preguntas Frecuentes</a>
+                <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#635BFF] text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition shadow-sm">Acceder (99 USD)</a>
             </div>
-            <button class="md:hidden text-indigo-600" onclick="toggleMenu()">☰</button>
+            <button class="md:hidden text-indigo-600 focus:outline-none" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
         </div>
         <div id="mobile-menu" class="hidden md:hidden p-4 bg-white border-t flex flex-col space-y-4">
-            <a href="#metodo" onclick="toggleMenu()">El Método</a>
-            <a href="#calculadora" onclick="toggleMenu()">Calculadora</a>
-            <a href="#programa" onclick="toggleMenu()">Programa</a>
+            <a href="#metodo" onclick="toggleMenu()" class="text-gray-700">El Método</a>
+            <a href="#comparativa" onclick="toggleMenu()" class="text-gray-700">¿Por qué Renta Inteligente?</a>
+            <a href="#calculadora" onclick="toggleMenu()" class="text-gray-700">Calculadora</a>
+            <a href="#programa" onclick="toggleMenu()" class="text-gray-700">Programa</a>
+            <a href="#faq" onclick="toggleMenu()" class="text-gray-700">Preguntas Frecuentes</a>
             <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="text-indigo-600 font-bold">🛒 Comprar Ahora</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="pt-32 pb-20 px-4">
+    <header class="pt-32 pb-16 px-4">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">MÉTODO PROBADO EN ESPAÑA</span>
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">SISTEMA PROBADO EN ESPAÑA</span>
                 <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                    Domina el <span class="gradient-text">Rent to Rent</span> y vive del alquiler sin comprar pisos.
+                    Domina la <span class="gradient-text">Renta Inteligente</span> y vive del alquiler sin comprar pisos.
                 </h1>
                 <p class="text-lg text-gray-600 mb-8 max-w-lg">
                     Genera flujo de caja pasivo mes a mes en menos de 30 días, sin hipotecas y de forma 100% legal bajo el Código Civil español.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#00D46A] text-white px-8 py-4 rounded-xl font-bold text-center hover:shadow-lg hover:scale-105 transition-all">
-                        🛒 ACCEDER AL CURSO (99 USD)
+                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#00D46A] text-white px-8 py-4 rounded-xl font-bold text-center hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i> ACCEDER AL CURSO (99 USD)
                     </a>
-                    <a href="https://forms.gle/LT36USjZmLd5vbjb7" class="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-xl font-bold text-center hover:bg-indigo-50 transition-all">
+                    <a href="https://forms.gle/LT36USjZmLd5vbjb7" class="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-xl font-bold text-center hover:bg-indigo-50 transition-all flex items-center justify-center">
                         📞 SESIÓN ESTRATÉGICA GRATIS
                     </a>
                 </div>
@@ -138,45 +125,95 @@
             <div class="relative">
                 <div class="absolute -inset-4 bg-indigo-500/10 rounded-3xl blur-3xl"></div>
                 <div class="relative bg-white p-6 rounded-3xl shadow-2xl border border-indigo-50">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-sm font-bold text-gray-400 uppercase">Rentabilidad Real</span>
-                        <span class="text-success-green font-bold text-lg">📈 +15% ROI</span>
-                    </div>
-                    <div class="chart-container">
-                        <canvas id="comparisonChart"></canvas>
+                    <img src="https://placehold.co/600x350/635bff/ffffff?text=Advanced+Training+Renta+Inteligente" alt="Curso Renta Inteligente" class="w-full rounded-2xl mb-4 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x350/635BFF/FFFFFF?text=Renta+Inteligente';">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-bold text-gray-400 uppercase">Flujo de Caja Activo</span>
+                        <span class="text-[#00D46A] font-bold text-lg"><i class="fa-solid fa-chart-line"></i> Rentabilidad Exponencial</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- The Problem Section (Interactive Comparison) -->
-    <section id="metodo" class="py-20 bg-white">
+
+    <!-- Dynamic Metrics Dashboard (Replacing Compressed Chart) -->
+    <section id="comparativa" class="py-20 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué el "Rent to Rent" es el camino inteligente?</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">Comparamos la barrera de entrada y la velocidad de retorno de la inversión tradicional vs. nuestro sistema.</p>
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">LA VERDADERA COMPARATIVA</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">¿Por qué destaca la Renta Inteligente?</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">
+                    La compra inmobiliaria tradicional exige demasiado capital para un retorno mínimo. Dividimos los datos para demostrarte visualmente el impacto del modelo.
+                </p>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
-                    <div class="text-3xl mb-4">🏦</div>
-                    <h3 class="font-bold text-xl mb-3">La Barrera Bancaria</h3>
-                    <p class="text-gray-600 text-sm">Los bancos piden el 30% de entrada. Para un piso de 150k€ necesitas 45k€ ahorrados. Con nosotros, empiezas con la fracción de eso.</p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Chart Box 1: Barrera de entrada -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-slate-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Ahorro Requerido para Empezar</h3>
+                            <p class="text-xs text-gray-400">Capital inicial mínimo en España para 1 propiedad</p>
+                        </div>
+                        <span class="text-red-500 bg-red-50 px-3 py-1 rounded-full text-xs font-bold">-93% de Barrera</span>
+                    </div>
+                    <div style="height: 250px; position: relative;">
+                        <canvas id="capitalChart"></canvas>
+                    </div>
                 </div>
-                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
-                    <div class="text-3xl mb-4">🐢</div>
-                    <h3 class="font-bold text-xl mb-3">La Trampa del 4%</h3>
-                    <p class="text-gray-600 text-sm">El alquiler tradicional apenas renta tras impuestos. El subarriendo por habitaciones triplica el flujo de caja neto por activo.</p>
-                </div>
-                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
-                    <div class="text-3xl mb-4">📜</div>
-                    <h3 class="font-bold text-xl mb-3">Seguridad Legal</h3>
-                    <p class="text-gray-600 text-sm">Aprende a usar el Código Civil a tu favor. Contratos blindados que eliminan el miedo a la ocupación o impagos.</p>
+
+                <!-- Chart Box 2: Rentabilidad -->
+                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-slate-100">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800">Rentabilidad Neta Anual (%)</h3>
+                            <p class="text-xs text-gray-400">Retorno porcentual sobre el dinero invertido</p>
+                        </div>
+                        <span class="text-emerald-500 bg-emerald-50 px-3 py-1 rounded-full text-xs font-bold">4.5x Mayor Retorno</span>
+                    </div>
+                    <div style="height: 250px; position: relative;">
+                        <canvas id="yieldChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+
+    <!-- Explanatory Pillars of the smart method -->
+    <section id="metodo" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">¿Por qué la Renta Inteligente es el camino?</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">El modelo para controlar activos sin necesidad de ser el propietario formal, actuando bajo la ley.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 text-2xl mb-4">
+                        <i class="fa-solid fa-building-columns"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">La Barrera Bancaria</h3>
+                    <p class="text-gray-600 text-sm">Los bancos piden el 30% de entrada. Para un piso de 150k€ necesitas 45k€ ahorrados. Con la Renta Inteligente, controlas el piso por una fracción.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 text-2xl mb-4">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">La Trampa del 4%</h3>
+                    <p class="text-gray-600 text-sm">El alquiler tradicional apenas rinde tras impuestos y mantenimiento. El subarriendo inteligente por habitaciones triplica el flujo de caja neto por activo.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600 text-2xl mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Seguridad Legal</h3>
+                    <p class="text-gray-600 text-sm">Aprende a usar el Código Civil a tu favor. Contratos de explotación que eliminan el miedo a la ocupación o a los impagos comunes de la LAU.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- ROI Calculator Widget -->
     <section id="calculadora" class="py-20 bg-indigo-50">
@@ -184,7 +221,7 @@
             <div class="bg-white rounded-3xl shadow-xl overflow-hidden grid md:grid-cols-2">
                 <div class="p-8 md:p-12">
                     <h2 class="text-2xl font-bold mb-6">Simulador de Flujo de Caja</h2>
-                    <p class="text-gray-500 mb-8 text-sm">Ajusta los valores para ver tu beneficio mensual estimado por una sola propiedad.</p>
+                    <p class="text-gray-500 mb-8 text-sm">Ajusta los valores para ver tu beneficio mensual estimado por una sola propiedad de Renta Inteligente.</p>
                     
                     <div class="space-y-6">
                         <div>
@@ -211,12 +248,12 @@
                     <hr class="my-8 border-indigo-400/30">
                     <div class="grid grid-cols-2 gap-4 text-left">
                         <div>
-                            <div class="text-xs opacity-70">Margen</div>
-                            <div class="font-bold" id="marginVal">41%</div>
+                            <div class="text-xs opacity-70">Margen de Flujo</div>
+                            <div class="font-bold text-lg" id="marginVal">41%</div>
                         </div>
                         <div>
                             <div class="text-xs opacity-70">Anualizado</div>
-                            <div class="font-bold text-success-green" id="annualVal">9.000€</div>
+                            <div class="font-bold text-lg text-success-green" id="annualVal">9.000€</div>
                         </div>
                     </div>
                 </div>
@@ -224,31 +261,33 @@
         </div>
     </section>
 
+
     <!-- Method Pillars -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12">Las 3 Vías del Éxito</h2>
+            <h2 class="text-3xl font-bold text-center mb-12">Las 3 Vías del Éxito con Renta Inteligente</h2>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="border rounded-2xl p-6 hover:border-indigo-500 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-indigo-600 group-hover:text-white transition">🏠</div>
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-[#635BFF] group-hover:text-white transition">🏢</div>
                     <h4 class="font-bold mb-2">Residencial / Habitaciones</h4>
-                    <p class="text-sm text-gray-500">Divide y vencerás. El modelo más estable con jóvenes profesionales y estudiantes.</p>
+                    <p class="text-sm text-gray-500">Divide y vencerás. El modelo más estable con jóvenes profesionales, estudiantes y opositores en España.</p>
                 </div>
                 <div class="border rounded-2xl p-6 hover:border-indigo-500 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-green-600 group-hover:text-white transition">🏖️</div>
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-[#00D46A] group-hover:text-white transition">🏖️</div>
                     <h4 class="font-bold mb-2">Alquiler Turístico</h4>
-                    <p class="text-sm text-gray-500">Maximiza márgenes con Airbnb. Te enseñamos la automatización total de llaves y limpieza.</p>
+                    <p class="text-sm text-gray-500">Maximiza márgenes con plataformas. Te enseñamos la automatización de accesos y la gestión delegada.</p>
                 </div>
                 <div class="border rounded-2xl p-6 hover:border-indigo-500 transition cursor-pointer group">
-                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition">📈</div>
-                    <h4 class="font-bold mb-2">Sistema Italiano</h4>
-                    <p class="text-sm text-gray-500">El secreto del escalado masivo usando el dinero de las fianzas para financiar tu expansión.</p>
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition">🇮🇹</div>
+                    <h4 class="font-bold mb-2">Sistema de Escalado Italiano</h4>
+                    <p class="text-sm text-gray-500">El secreto del crecimiento masivo: cómo utilizar el flujo inicial y fianzas para costear la expansión sin aportar capital extra.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Curriculum -->
+
+    <!-- Interactive Curriculum Roadmap -->
     <section id="programa" class="py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-12">
@@ -257,17 +296,17 @@
             </div>
 
             <div class="space-y-4">
-                <!-- Module Item -->
+                <!-- Module Item 1 -->
                 <div class="bg-white rounded-xl shadow-sm border overflow-hidden transition-all duration-300">
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(1)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">01</span>
-                            <span class="font-bold">Introducción y Modelos Clave</span>
+                            <span class="font-bold">Introducción y Tipos de Alquiler</span>
                         </div>
-                        <span id="icon-1">▼</span>
+                        <span id="icon-1" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-1" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Larga estancia vs Turístico. Cómo identificar la mejor oportunidad en tu zona y los pros y contras de cada modelo.
+                        Comprensión integral de los tres modelos de explotación: larga estancia, habitaciones y turístico vacacional. Analiza las ventajas de rentabilidad y esfuerzos de cada formato.
                     </div>
                 </div>
                 <!-- Module 2 -->
@@ -275,12 +314,12 @@
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(2)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">02</span>
-                            <span class="font-bold">Decoración e Interiorismo Inteligente</span>
+                            <span class="font-bold">Decoración y Ahorro Inteligente</span>
                         </div>
-                        <span id="icon-2">▼</span>
+                        <span id="icon-2" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-2" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Amuebla con gusto gastando un 50% menos. Estrategias de "Home Staging" para alquileres de alta demanda.
+                        Estrategias de "Home Staging". Cómo ahorrar más del 50% amueblando con plataformas de segunda mano, artículos con "tara" en electrodomésticos y grandes almacenes sin descuidar el buen gusto estético que multiplica el interés.
                     </div>
                 </div>
                 <!-- Module 3 -->
@@ -288,12 +327,12 @@
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(3)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">03</span>
-                            <span class="font-bold">Automatización del Sistema</span>
+                            <span class="font-bold">Automatización del Alquiler Turístico</span>
                         </div>
-                        <span id="icon-3">▼</span>
+                        <span id="icon-3" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-3" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Check-in digital, cajas de seguridad para llaves y gestión delegada. Haz que el negocio funcione sin tu presencia física.
+                        Cómo sistematizar el check-in, la entrega de llaves mediante cajetines de seguridad mecánicos/digitales, los videos explicativos automáticos para el huésped y la delegación de limpieza para no invertir tu tiempo físico diario.
                     </div>
                 </div>
                 <!-- Module 4 -->
@@ -301,25 +340,25 @@
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(4)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">04</span>
-                            <span class="font-bold">Explotación por Habitaciones</span>
+                            <span class="font-bold">Optimización y Subarriendo de Habitaciones</span>
                         </div>
-                        <span id="icon-4">▼</span>
+                        <span id="icon-4" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-4" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Cómo transformar salones en estancias rentables y aumentar tu beneficio un 30% extra cada mes.
+                        Técnicas de división de espacios para transformar salones desaprovechados en confortables dormitorios o estudios independientes con placas de pladur, aumentando la facturación neta mensual un 30% extra.
                     </div>
                 </div>
                 <!-- Module 5 -->
                 <div class="bg-white rounded-xl shadow-sm border overflow-hidden border-indigo-200 ring-2 ring-indigo-50">
-                    <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(5)">
+                    <button class="w-full text-left p-5 flex items-center justify-between hover:bg-indigo-100" onclick="toggleModule(5)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-red-500 text-white flex items-center justify-center text-xs font-bold mr-4">05</span>
-                            <span class="font-bold">Legalidad y Fiscalidad (Crítico)</span>
+                            <span class="font-bold">Legalidad y Fiscalidad en España (Módulo Crítico)</span>
                         </div>
-                        <span id="icon-5">▼</span>
+                        <span id="icon-5" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-5" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Diferencias entre LAU y Código Civil. Cómo tributar el subarrendamiento y gestionar el IVA para optimizar beneficios.
+                        Diferencias cruciales entre la Ley de Arrendamientos Urbanos (LAU) y el Código Civil. Cómo tributar los ingresos como Rendimiento del Capital Mobiliario, la gestión del IVA (cuando proceda por servicios hoteleros) y el uso de contratos de explotación para blindarte legalmente.
                     </div>
                 </div>
                 <!-- Module 6 -->
@@ -327,12 +366,12 @@
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(6)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">06</span>
-                            <span class="font-bold">El Arte de la Negociación</span>
+                            <span class="font-bold">El Arte de la Captación y Negociación</span>
                         </div>
-                        <span id="icon-6">▼</span>
+                        <span id="icon-6" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-6" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Guion de llamadas en frío. Técnicas para que el propietario confíe en ti como gestor y no como inquilino.
+                        Cómo buscar propiedades sin encanto, guion de llamadas en frío para rebatir las sospechas del propietario y proponer una explotación win-win donde le garantizas el mantenimiento del inmueble y el pago estable.
                     </div>
                 </div>
                 <!-- Module 7 -->
@@ -340,23 +379,23 @@
                     <button class="w-full text-left p-5 flex items-center justify-between hover:bg-gray-50" onclick="toggleModule(7)">
                         <div class="flex items-center">
                             <span class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center text-xs font-bold mr-4">07</span>
-                            <span class="font-bold">Sistema de Escalado 30 Días</span>
+                            <span class="font-bold">Fórmula de Escalado Financiero</span>
                         </div>
-                        <span id="icon-7">▼</span>
+                        <span id="icon-7" class="text-indigo-600 font-bold">▼</span>
                     </button>
                     <div id="module-7" class="hidden p-5 border-t text-sm text-gray-600 bg-indigo-50/30">
-                        Tiempos exactos para poner en marcha el inmueble y la fórmula de reinversión infinita.
+                        El sistema de reinversión en 30 días para expandir tu cartera. Usa la fianza legal y el primer mes de depósito de tus inquilinos para financiar tu siguiente activo, requiriendo un capital propio mínimo.
                     </div>
                 </div>
             </div>
             
             <div class="mt-12 bg-indigo-900 rounded-2xl p-8 text-white relative overflow-hidden">
                 <div class="relative z-10">
-                    <h3 class="text-xl font-bold mb-4">🎁 BONUS INCLUIDOS</h3>
+                    <h3 class="text-xl font-bold mb-4">🎁 BONUS DE GESTIÓN INCLUIDOS</h3>
                     <ul class="space-y-3 text-indigo-100 text-sm">
-                        <li class="flex items-center">✅ Plantilla de Control de Ingresos y Gastos</li>
-                        <li class="flex items-center">✅ Presupuesto de Marketing Estratégico</li>
-                        <li class="flex items-center">✅ Cuadro de Mandos Integral (CMI)</li>
+                        <li class="flex items-center"><span class="mr-2">📈</span> Plantilla de Control de Gastos e Ingresos de Caja</li>
+                        <li class="flex items-center"><span class="mr-2">🎯</span> Plantilla de Presupuestos de Marketing Estratégico</li>
+                        <li class="flex items-center"><span class="mr-2">📊</span> Cuadro de Mandos Integral (CMI) Empresarial</li>
                     </ul>
                 </div>
                 <div class="absolute right-[-20px] bottom-[-20px] text-9xl opacity-10 rotate-12">🎁</div>
@@ -364,83 +403,231 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section id="acceder" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-16 text-center border-2 border-indigo-100 shadow-2xl">
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">RESOLVEMOS TUS DUDAS</span>
+                <h2 class="text-3xl font-bold mt-3">Preguntas Frecuentes</h2>
+                <p class="text-gray-500 mt-2">Dudas legales, de capital e impositivas aclaradas según el marco español.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <h4 class="font-bold text-lg text-slate-800 mb-2">¿Es legal realizar Renta Inteligente en España?</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Sí, es perfectamente legal. Mientras que la LAU rige los alquileres de vivienda permanente, el subarriendo parcial de habitaciones o la cesión de explotación se regulan bajo el Código Civil español, siempre que exista un consentimiento expreso y por escrito del propietario en el contrato principal.
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <h4 class="font-bold text-lg text-slate-800 mb-2">¿Tengo que darme de alta como autónomo?</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Sí. Al realizar Renta Inteligente estás ejerciendo una actividad económica continuada con fines de lucro. Deberás darte de alta en el régimen de autónomos o, si escalas el negocio superando los 3 inmuebles activos, te recomendamos constituir una Sociedad Limitada (S.L.) para optimizar los beneficios fiscales.
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <h4 class="font-bold text-lg text-slate-800 mb-2">¿Qué ocurre si un inquilino de una habitación no me paga?</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Al no estar regulado por la LAU sino por el Código Civil y lo pactado contractualmente, el impago faculta la resolución unilateral de forma mucho más ágil. El contrato amparado por el Código Civil te otorga mayor velocidad legal para resolver estas contingencias que un alquiler completo residencial.
+                    </p>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                    <h4 class="font-bold text-lg text-slate-800 mb-2">¿Cómo se gestiona el IVA en el subarriendo?</h4>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        La operación de subarriendo como vivienda permanente de las habitaciones está sujeta pero exenta de IVA. Sin embargo, si prestas servicios hoteleros de forma habitual (limpieza semanal de la habitación privada, lavado de sábanas o desayunos), la exención se pierde y se aplicará el 10% de IVA. En el curso detallamos estos escenarios fiscales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Final CTA Section -->
+    <section id="acceder" class="py-20 px-4 bg-slate-50 border-t">
+        <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 md:p-16 text-center border-2 border-indigo-100 shadow-2xl relative">
+            <div class="absolute top-0 right-0 transform translate-x-2 -translate-y-4 bg-red-500 text-white font-bold text-xs px-3 py-1 rounded-full uppercase tracking-widest animate-pulse">
+                Oferta Limitada 2026
+            </div>
             <h2 class="text-3xl md:text-5xl font-bold mb-6">¿Listo para construir tu cartera inmobiliaria este mes?</h2>
             <p class="text-gray-500 mb-10 text-lg">El precio promocional de 99 USD es limitado para esta edición digital. No dejes que la inflación consuma tus ahorros.</p>
             
             <div class="flex flex-col items-center space-y-6">
-                <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="w-full max-w-md bg-[#00D46A] text-white py-5 rounded-2xl font-bold text-xl hover:shadow-xl transition-all flex items-center justify-center">
-                    🚀 SÍ, COMPRAR EL CURSO AHORA
+                <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="w-full max-w-md bg-[#00D46A] text-white py-5 rounded-2xl font-bold text-xl hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                    🚀 SÍ, COMPRAR EL CURSO COMPRENSIVO AHORA
                 </a>
                 <a href="https://forms.gle/LT36USjZmLd5vbjb7" class="text-indigo-600 font-bold hover:underline">
                     Preferiría una sesión de calificación gratuita →
                 </a>
                 <div class="flex items-center space-y-2 flex-col pt-6">
                     <div class="flex space-x-2">
-                        <span class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500">VISA</span>
-                        <span class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500">MC</span>
-                        <span class="w-8 h-8 bg-gray-200 rounded flex items-center justify-center text-[10px] text-gray-500">STRIPE</span>
+                        <span class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-500 font-bold"><i class="fa-brands fa-cc-visa text-xl"></i></span>
+                        <span class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-500 font-bold"><i class="fa-brands fa-cc-mastercard text-xl"></i></span>
+                        <span class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-xs text-gray-500 font-bold"><i class="fa-brands fa-stripe text-2xl"></i></span>
                     </div>
-                    <p class="text-xs text-gray-400 italic font-medium">Pago procesado de forma segura. Acceso de por vida.</p>
+                    <p class="text-xs text-gray-400 italic font-medium">Pago procesado de forma segura • Acceso de por vida inmediato</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="font-bold text-indigo-700 mb-4 tracking-tighter">RENTA INTELIGENTE</div>
-            <p class="text-gray-400 text-xs uppercase tracking-widest mb-8">Randall Vargas Torres • © 2024 Todos los derechos reservados</p>
-            <div class="flex justify-center space-x-6 text-sm text-gray-500">
-                <a href="#" class="hover:text-indigo-600">Aviso Legal</a>
-                <a href="#" class="hover:text-indigo-600">Privacidad</a>
-                <a href="#" class="hover:text-indigo-600">Cookies</a>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/34600000000?text=Hola!%20Me%20interesa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Advanced%20Training%20Renta%20Inteligente" target="_blank" class="fixed bottom-6 left-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-transform pulse-whatsapp" title="Pregúntanos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Interactive AI Chatbot Widget (Floating Bottom Right) -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <!-- Chat Toggle Button -->
+        <button onclick="toggleChat()" class="bg-indigo-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-xl hover:bg-indigo-700 transition relative">
+            <i class="fa-solid fa-comments"></i>
+            <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-[10px] w-5 h-5 flex items-center justify-center font-bold">1</span>
+        </button>
+
+        <!-- Chat Container Window (Hidden by default) -->
+        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-[350px] md:w-[400px] h-[500px] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-300">
+            <!-- Header -->
+            <div class="bg-indigo-600 text-white p-4 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center font-bold text-lg">💡</div>
+                    <div>
+                        <h4 class="font-bold text-sm">Asistente Renta Inteligente</h4>
+                        <span class="text-xs text-indigo-200">En línea • Responde al instante</span>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white hover:text-indigo-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
             </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 text-sm">
+                <!-- Greeting message -->
+                <div class="flex items-start space-x-2">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%]">
+                        ¡Hola! Soy tu asistente de Renta Inteligente. He leído nuestro manual de 24 rentas en 12 meses. 
+                        ¿De qué tema quieres que te hable hoy? Puedes escribir abajo o pulsar una pregunta rápida:
+                    </div>
+                </div>
+
+                <!-- Suggested Quick Questions -->
+                <div class="flex flex-col space-y-2 pl-10" id="quick-queries">
+                    <button onclick="handleQuickQuestion('¿Es legal subarrendar habitaciones en España?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
+                        ⚖️ ¿Es legal subarrendar habitaciones en España?
+                    </button>
+                    <button onclick="handleQuickQuestion('¿Cómo convenzo a un propietario si no tengo dinero?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
+                        🤝 ¿Cómo convenzo al propietario sin dinero?
+                    </button>
+                    <button onclick="handleQuickQuestion('¿Qué es el Sistema de Escalado Italiano?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
+                        🇮🇹 ¿Qué es el Sistema de Escalado Italiano?
+                    </button>
+                    <button onclick="handleQuickQuestion('¿Tengo que darme de alta de autónomo en España?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
+                        💼 ¿Tengo que ser autónomo?
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-3 bg-white border-t flex items-center space-x-2">
+                <input type="text" id="chat-input" placeholder="Pregunta algo sobre el temario..." class="flex-1 p-3 bg-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm" onkeypress="checkEnter(event)">
+                <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-xl transition">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-12 border-t bg-slate-900 text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="font-bold text-white text-lg mb-2 tracking-tighter">RENTA INTELIGENTE</div>
+            <p class="text-slate-500 text-xs uppercase tracking-widest mb-8">© Año 2026 • Todos los derechos reservados</p>
+            <div class="flex justify-center space-x-6 text-sm text-slate-500 mb-6">
+                <a href="#" class="hover:text-white transition">Aviso Legal</a>
+                <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+                <a href="#" class="hover:text-white transition">Cookies</a>
+            </div>
+            <p class="text-[10px] text-slate-600 max-w-md mx-auto">
+                Los contenidos formativos de este portal se basan en el marco regulado por el Código Civil español para la explotación de alquileres por habitaciones y uso turístico. Los resultados financieros mostrados son estimaciones basadas en estudios de mercado.
+            </p>
         </div>
     </footer>
 
+
     <script>
-        // Charts Implementation
+        // 1. Double charts initialization to replace the visual compression issue (Captura de pantalla 2026-07-02 005352.png)
+        let capitalChartInstance, yieldChartInstance;
+
         function initCharts() {
-            const ctx = document.getElementById('comparisonChart').getContext('2d');
-            new Chart(ctx, {
+            // Chart 1: Initial Entry Capital Required (Ahorro Requerido)
+            const ctxCapital = document.getElementById('capitalChart').getContext('2d');
+            capitalChartInstance = new Chart(ctxCapital, {
                 type: 'bar',
                 data: {
-                    labels: ['Ahorro Requerido', 'Velocidad Retorno', 'Rentabilidad %'],
-                    datasets: [
-                        {
-                            label: 'Tradicional',
-                            data: [45000, 240, 4],
-                            backgroundColor: 'rgba(30, 41, 59, 0.3)',
-                            borderRadius: 8
-                        },
-                        {
-                            label: 'Rent to Rent',
-                            data: [3000, 12, 18],
-                            backgroundColor: '#635BFF',
-                            borderRadius: 8
-                        }
-                    ]
+                    labels: ['Tradicional (Compra)', 'Renta Inteligente'],
+                    datasets: [{
+                        label: 'Inversión Mínima (€)',
+                        data: [45000, 3000],
+                        backgroundColor: ['#94A3B8', '#635BFF'],
+                        borderRadius: 12,
+                        barPercentage: 0.6
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: { position: 'top', labels: { boxWidth: 10, font: { size: 10 } } },
+                        legend: { display: false },
                         tooltip: { backgroundColor: '#1E293B' }
                     },
                     scales: {
-                        y: { display: false },
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(226, 232, 240, 0.4)' },
+                            ticks: { callback: value => value.toLocaleString() + '€' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+
+            // Chart 2: Net Annualized Yield Comparison (Rentabilidad %)
+            const ctxYield = document.getElementById('yieldChart').getContext('2d');
+            yieldChartInstance = new Chart(ctxYield, {
+                type: 'bar',
+                data: {
+                    labels: ['Alquiler Tradicional', 'Renta Inteligente'],
+                    datasets: [{
+                        label: 'Rentabilidad Neta Anual (%)',
+                        data: [4, 18],
+                        backgroundColor: ['#94A3B8', '#00D46A'],
+                        borderRadius: 12,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: '#1E293B' }
+                    },
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: { color: 'rgba(226, 232, 240, 0.4)' },
+                            ticks: { callback: value => value + '%' }
+                        },
                         x: { grid: { display: false } }
                     }
                 }
             });
         }
 
-        // ROI Calculator Logic
+        // 2. Interactive ROI Calculator
         const rentInput = document.getElementById('rentInput');
         const incomeInput = document.getElementById('incomeInput');
         const expenseInput = document.getElementById('expenseInput');
@@ -458,32 +645,32 @@
             const profitEl = document.getElementById('netProfit');
             profitEl.innerText = profit + '€';
             
-            const margin = (profit / income * 100).toFixed(0);
+            const margin = income > 0 ? ((profit / income) * 100).toFixed(0) : 0;
             document.getElementById('marginVal').innerText = margin + '%';
             document.getElementById('annualVal').innerText = (profit * 12).toLocaleString() + '€';
 
-            // Visual feedback
+            // Visual alerting feedback
             if (profit < 0) {
-                profitEl.classList.remove('text-white');
-                profitEl.classList.add('text-red-400');
+                profitEl.className = "text-5xl md:text-7xl font-bold mb-4 text-red-400";
             } else {
-                profitEl.classList.add('text-white');
-                profitEl.classList.remove('text-red-400');
+                profitEl.className = "text-5xl md:text-7xl font-bold mb-4 text-white";
             }
         }
 
         [rentInput, incomeInput, expenseInput].forEach(el => el.addEventListener('input', updateCalculator));
 
-        // Module Accordion
+        // 3. Module Accordion Handler
         function toggleModule(id) {
             const el = document.getElementById('module-' + id);
             const icon = document.getElementById('icon-' + id);
             const isHidden = el.classList.contains('hidden');
             
-            // Close others
-            for(let i=1; i<=7; i++) {
-                document.getElementById('module-'+i).classList.add('hidden');
-                document.getElementById('icon-'+i).innerText = '▼';
+            // Close others first for seamless accordion logic
+            for (let i = 1; i <= 7; i++) {
+                const otherMod = document.getElementById('module-' + i);
+                const otherIcon = document.getElementById('icon-' + i);
+                if (otherMod) otherMod.classList.add('hidden');
+                if (otherIcon) otherIcon.innerText = '▼';
             }
 
             if (isHidden) {
@@ -492,12 +679,135 @@
             }
         }
 
-        // Mobile Menu
+        // 4. Mobile Navigation Menu Toggle
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
         }
 
+        // 5. Chatbot Interface Toggle
+        function toggleChat() {
+            const chatWin = document.getElementById('chat-window');
+            chatWin.classList.toggle('hidden');
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // 6. Conversational AI Rules & Data Retrieval (Based on PDF)
+        const chatReplies = [
+            {
+                keywords: ['legal', 'ley', 'código civil', 'civil', 'lau', 'contrato', 'explotación', 'fianza'],
+                reply: "<b>⚖️ Legalidad bajo el Código Civil:</b><br>En el subarriendo de habitaciones en España, no nos regimos por la LAU, sino por el Código Civil. Esto te permite tener un contrato totalmente personalizado y flexible, donde el impago durante un mes te da derecho a resolver el contrato unilateralmente de manera mucho más ágil. La fianza se recupera rápido y la exención del IVA aplica si los inquilinos lo usan puramente para vivienda permanente (sin servicios de hostelería)."
+            },
+            {
+                keywords: ['dinero', 'capital', 'comprar', 'sin dinero', 'entrada', 'financia', 'inversión'],
+                reply: "<b>🤝 Hacerlo Sin Dinero o Con Bajo Capital:</b><br>A diferencia de la compra inmobiliaria (donde necesitas mínimo 45k€), en la <b>Renta Inteligente</b> entras como gestor o inquilino. Si no tienes dinero de inversión, ofreces al propietario un servicio de asesor o 'Property Manager' donde tú consigues los huéspedes y te llevas del 20% al 35% de comisión por gestionar el coliving. Si pones el capital tú, con solo ~3.000€ puedes decorar el piso (Home Staging de bajo coste) y lanzar la actividad."
+            },
+            {
+                keywords: ['escalado', 'italiano', 'sistema italiano', 'reinversión', 'escalar', '30 días'],
+                reply: "<b>🇮🇹 El Sistema de Escalado Italiano:</b><br>Consiste en cobrar de tus inquilinos un pack de entrada: 1 mes de fianza, el mes en curso y un mes de salida por adelantado. Si tienes 4 habitaciones de las cuales facturas 1.600€ en total, nada más empezar cobras 4.800€ del primer grupo. Este capital te sirve para recuperar casi el 100% de la inversión inicial de reforma (~5.000€) y reinvertirlo en el siguiente activo. ¡El dinero trabaja para tu expansión!"
+            },
+            {
+                keywords: ['autónomo', 'empresa', 'gestoría', 'factura', 'iva', 'irpf', 'sociedad', 's.l.'],
+                reply: "<b>💼 Gestión Tributaria y Alta:</b><br>Al principio no necesitas constituirte como empresa. Puedes operar como autónomo declarando tus ingresos en el IRPF como rendimientos del capital mobiliario (pestaña general). Una vez que gestiones más de 3 viviendas activos, te aconsejamos crear una S.L. para optimizar la carga impositiva. Una gestoría habitual por 70€ al mes te solventará toda la contabilidad."
+            },
+            {
+                keywords: ['propietario', 'llamada', 'llamada en frío', 'negociar', 'guión', 'reunión'],
+                reply: "<b>📞 Negociación y Captación de Propietarios:</b><br>Buscamos pisos con muebles antiguos o sin encanto. Nuestra mejor propuesta para el propietario es garantizarle:<br>1. Una redecoración completa del inmueble (revalorizándolo gratis para él).<br>2. Estabilidad de contrato de larga duración.<br>3. Mantenimiento premium asegurado por nosotros. En el curso te proporcionamos el guion telefónico exacto para programar reuniones físicas altamente eficientes."
+            },
+            {
+                keywords: ['turístico', 'vacacional', 'airbnb', 'licencia', 'caja de seguridad', 'llaves'],
+                reply: "<b>🏖️ Modelo Turístico y Automatización:</b><br>El alquiler turístico ofrece rentabilidades del 10% al 20%. Exige conseguir la licencia turística municipal en zonas habilitadas en España. Lo automatizamos instalando cajetines de seguridad (como Sentinel de pared, ~37€) y enviando videos de acceso por correo o WhatsApp. Esto te ahorra tiempo físico de entrega de llaves y permite delegar la limpieza tras cada check-out."
+            }
+        ];
+
+        function handleQuickQuestion(questionText) {
+            // Append user message
+            const messagesContainer = document.getElementById('chat-messages');
+            const userMsgHtml = `
+                <div class="flex items-end justify-end space-x-2">
+                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
+                        ${questionText}
+                    </div>
+                </div>
+            `;
+            messagesContainer.insertAdjacentHTML('beforeend', userMsgHtml);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Trigger AI response simulation
+            simulateBotResponse(questionText.toLowerCase());
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const query = input.value.trim();
+            if (!query) return;
+
+            // Append user message
+            const messagesContainer = document.getElementById('chat-messages');
+            const userMsgHtml = `
+                <div class="flex items-end justify-end space-x-2">
+                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
+                        ${query}
+                    </div>
+                </div>
+            `;
+            messagesContainer.insertAdjacentHTML('beforeend', userMsgHtml);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            input.value = '';
+
+            simulateBotResponse(query.toLowerCase());
+        }
+
+        function simulateBotResponse(userQuery) {
+            const messagesContainer = document.getElementById('chat-messages');
+            
+            // Show typing indicator
+            const typingId = 'typing-' + Date.now();
+            const typingHtml = `
+                <div class="flex items-start space-x-2" id="${typingId}">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
+                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%] italic text-gray-400">
+                        Escribiendo respuesta...
+                    </div>
+                </div>
+            `;
+            messagesContainer.insertAdjacentHTML('beforeend', typingHtml);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Simple match keyword logic
+            let responseText = "Entiendo tu pregunta. Para responderte con exactitud, los temas más importantes del curso son la <b>Legalidad en España (Código Civil)</b>, cómo convencer al <b>Propietario</b> sin dinero inicial, o el funcionamiento del <b>Sistema Italiano de Escalado</b>. ¿Te gustaría profundizar en alguno?";
+            
+            for (let rule of chatReplies) {
+                if (rule.keywords.some(kw => userQuery.includes(kw))) {
+                    responseText = rule.reply;
+                    break;
+                }
+            }
+
+            setTimeout(() => {
+                // Remove typing indicator and append real response
+                const indicator = document.getElementById(typingId);
+                if (indicator) indicator.remove();
+
+                const botMsgHtml = `
+                    <div class="flex items-start space-x-2 animate-fade-in">
+                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%] text-slate-700 leading-relaxed">
+                            ${responseText}
+                        </div>
+                    </div>
+                `;
+                messagesContainer.insertAdjacentHTML('beforeend', botMsgHtml);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+        }
+
+        // On window load trigger
         window.onload = () => {
             initCharts();
             updateCalculator();
