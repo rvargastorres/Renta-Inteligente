@@ -1,114 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renta Inteligente - Advanced Training</title>
-    <!-- Tailwind CSS para diseño rápido y ultra-moderno -->
+    <title>Advanced Training Renta Inteligente</title>
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js para visualización de datos de alto impacto -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- FontAwesome para iconos limpios y profesionales -->
+    
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        stripe: '#635BFF',
+                        stripeHover: '#4F46E5',
+                        successGreen: '#00D46A',
+                        successGreenHover: '#00B358',
+                        premiumSlate: '#1E293B',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --stripe-purple: #635BFF;
-            --success-green: #00D46A;
-            --graphite: #1E293B;
-            --neutral-bg: #F8F9FA;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--neutral-bg);
-            color: var(--graphite);
-            scroll-behavior: smooth;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, var(--stripe-purple), #9089ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-link {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--stripe-purple);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Animación de latido para elementos de urgencia */
-        @keyframes pulse-gentle {
-            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(99, 91, 255, 0.3); }
-            50% { transform: scale(1.03); box-shadow: 0 4px 25px rgba(99, 91, 255, 0.5); }
-        }
-        .pulse-premium {
-            animation: pulse-gentle 2s infinite ease-in-out;
-        }
-
         .premium-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .premium-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(99, 91, 255, 0.1), 0 10px 10px -5px rgba(99, 91, 255, 0.04);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-card border-b">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="font-bold text-xl tracking-tight text-indigo-700 flex items-center">
-                <span class="mr-2">⚡</span> RENTA INTELIGENTE
+    <nav class="bg-white/90 backdrop-blur-md border-b border-slate-100 fixed w-full z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="text-xl md:text-2xl font-extrabold text-stripe flex items-center gap-2">
+                        <i class="fa-solid fa-hotel"></i> Renta Inteligente
+                    </span>
+                </div>
+                
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#metodo" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">El Método</a>
+                    <a href="#comparativa" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">Estadísticas</a>
+                    <a href="#calculadora" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">Calculadora</a>
+                    <a href="#programa" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">Programa</a>
+                    <a href="#testimonios" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">Testimonios</a>
+                    <a href="#faq" class="text-sm font-semibold text-slate-600 hover:text-stripe transition">Preguntas</a>
+                </div>
+
+                <div class="hidden md:flex items-center">
+                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" target="_blank" class="bg-successGreen hover:bg-successGreenHover text-white font-bold px-6 py-3 rounded-2xl shadow-lg transition duration-200 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-cart-shopping"></i> Comprar Ahora
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMenu()" class="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-stripe hover:bg-slate-50 transition focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
             </div>
-            <div class="hidden md:flex space-x-8 font-medium text-sm items-center">
-                <a href="#metodo" class="nav-link">El Método</a>
-                <a href="#comparativa" class="nav-link">Estadísticas</a>
-                <a href="#calculadora" class="nav-link">Calculadora</a>
-                <a href="#programa" class="nav-link">Programa</a>
-                <a href="#testimonios" class="nav-link">Testimonios</a>
-                <a href="#precio" class="nav-link">Precio Especial</a>
-                <a href="#faq" class="nav-link">Preguntas</a>
-                <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#635BFF] text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition shadow-sm font-semibold">Acceder ($99 USD)</a>
-            </div>
-            <button class="md:hidden text-indigo-600 focus:outline-none" onclick="toggleMenu()">
-                <i class="fa-solid fa-bars text-xl"></i>
-            </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden p-4 bg-white border-t flex flex-col space-y-4">
-            <a href="#metodo" onclick="toggleMenu()" class="text-gray-700">El Método</a>
-            <a href="#comparativa" onclick="toggleMenu()" class="text-gray-700">Estadísticas</a>
-            <a href="#calculadora" onclick="toggleMenu()" class="text-gray-700">Calculadora</a>
-            <a href="#programa" onclick="toggleMenu()" class="text-gray-700">Programa</a>
-            <a href="#testimonios" onclick="toggleMenu()" class="text-gray-700">Testimonios</a>
-            <a href="#precio" onclick="toggleMenu()" class="text-gray-700">Precio Especial</a>
-            <a href="#faq" onclick="toggleMenu()" class="text-gray-700">Preguntas</a>
-            <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="text-indigo-600 font-bold">🛒 Comprar Ahora</a>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden p-4 bg-white border-t flex flex-col space-y-4 shadow-xl">
+            <a href="#metodo" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">El Método</a>
+            <a href="#comparativa" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">Estadísticas</a>
+            <a href="#calculadora" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">Calculadora</a>
+            <a href="#programa" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">Programa</a>
+            <a href="#testimonios" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">Testimonios</a>
+            <a href="#faq" onclick="toggleMenu()" class="text-slate-700 font-medium py-2">Preguntas</a>
+            <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" target="_blank" class="bg-successGreen text-white font-bold py-3 px-4 rounded-xl text-center shadow">
+                🛒 Comprar Ahora
+            </a>
         </div>
     </nav>
 
@@ -116,39 +101,47 @@
     <header class="pt-32 pb-16 px-4">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-bold mb-4">SISTEMA PROBADO EN ESPAÑA</span>
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                    Domina la <span class="gradient-text">Renta Inteligente</span> y vive del alquiler sin comprar pisos.
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full inline-block mb-4">
+                    Revolución Inmobiliaria en España
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-none mb-6">
+                    Genera un Flujo de Caja Pasivo <span class="text-stripe">Sin Comprar</span> Pisos
                 </h1>
-                <p class="text-lg text-gray-600 mb-8 max-w-lg">
-                    Genera flujo de caja pasivo mes a mes en menos de 30 días, sin hipotecas y de forma 100% legal bajo el Código Civil español.
+                <p class="text-slate-600 text-base md:text-lg mb-8 leading-relaxed">
+                    Aprende el método legal de <strong>Renta Inteligente</strong> para controlar activos en España, gestionarlos por habitaciones o uso vacacional, y quedarte con el 100% de la rentabilidad mensual sin pedir hipotecas.
                 </p>
-                
-                <!-- Urgency Countdown Header Widget -->
-                <div class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl flex flex-col sm:flex-row items-center gap-4 max-w-md shadow-sm">
-                    <div class="flex items-center gap-2 text-amber-800 font-semibold text-sm">
-                        <i class="fa-solid fa-clock-rotate-left animate-spin text-lg"></i>
-                        <span>La oferta expira en:</span>
-                    </div>
-                    <div class="flex gap-2">
-                        <div class="bg-indigo-600 text-white font-mono font-bold text-sm px-2.5 py-1 rounded" id="timer-hours">00</div>
-                        <span class="text-indigo-600 font-bold">:</span>
-                        <div class="bg-indigo-600 text-white font-mono font-bold text-sm px-2.5 py-1 rounded" id="timer-mins">00</div>
-                        <span class="text-indigo-600 font-bold">:</span>
-                        <div class="bg-indigo-600 text-white font-mono font-bold text-sm px-2.5 py-1 rounded" id="timer-secs">00</div>
+
+                <!-- Urgency evergreen timer -->
+                <div class="bg-slate-900 p-4 rounded-3xl mb-8 border border-slate-800 shadow-md">
+                    <p class="text-slate-400 text-xs font-bold uppercase tracking-wider mb-2 text-center md:text-left">
+                        ⚡ Oferta especial por tiempo limitado
+                    </p>
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <div class="text-center">
+                            <span id="timer-hours" class="text-white text-xl md:text-2xl font-black bg-slate-800 px-3 py-1 rounded-xl block">02</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold">Horas</span>
+                        </div>
+                        <div class="text-center">
+                            <span id="timer-mins" class="text-white text-xl md:text-2xl font-black bg-slate-800 px-3 py-1 rounded-xl block">45</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold">Minutos</span>
+                        </div>
+                        <div class="text-center">
+                            <span id="timer-secs" class="text-white text-xl md:text-2xl font-black bg-slate-800 px-3 py-1 rounded-xl block">12</span>
+                            <span class="text-[10px] text-slate-400 uppercase font-semibold">Segundos</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#00D46A] text-white px-8 py-4 rounded-xl font-bold text-center hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 pulse-premium">
-                        <i class="fa-solid fa-cart-shopping"></i> COMPRAR CURSO ($99 USD)
+                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" target="_blank" class="bg-successGreen hover:bg-successGreenHover text-white text-center font-extrabold py-4 px-8 rounded-2xl shadow-xl hover:shadow-successGreen/20 transition-all text-lg flex items-center justify-center gap-2">
+                        🛒 ACCEDER AL CURSO POR 99 USD <span class="line-through text-slate-300 text-sm">999 USD</span>
                     </a>
-                    <a href="https://forms.gle/LT36USjZmLd5vbjb7" class="border-2 border-indigo-600 text-indigo-600 px-8 py-4 rounded-xl font-bold text-center hover:bg-indigo-50 transition-all flex items-center justify-center">
-                        📞 SESIÓN ESTRATÉGICA GRATIS
+                    <a href="https://forms.gle/LT36USjZmLd5vbjb7" target="_blank" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-center font-bold py-4 px-8 rounded-2xl transition text-base">
+                        📋 Sesión de Calificación Gratis
                     </a>
                 </div>
-                <p class="mt-4 text-xs text-gray-400">Acceso vitalicio inmediato • Pago 100% seguro con Stripe • Precio rebajado por tiempo limitado</p>
             </div>
+            
             <div class="relative">
                 <div class="absolute -inset-4 bg-indigo-500/10 rounded-3xl blur-3xl"></div>
                 <div class="relative bg-white p-6 rounded-3xl shadow-2xl border border-indigo-50">
@@ -162,200 +155,275 @@
         </div>
     </header>
 
+    <!-- El Método Section -->
+    <section id="metodo" class="py-20 bg-white scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">LA FÓRMULA PROBADA</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">El Método Renta Inteligente</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-base md:text-lg">
+                    Aprende cómo controlar activos inmobiliarios en España y quedarte con la rentabilidad mensual sin necesidad de endeudarte, pedir hipotecas ni comprar pisos.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
+                    <div class="w-12 h-12 bg-indigo-50 text-stripe rounded-2xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-hotel"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-3">1. Coliving & Habitaciones</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Multiplica los ingresos de cualquier piso convencional suprimiendo el salón y habilitándolo para habitaciones independientes de alto rendimiento. Te enseñamos a gestionar perfiles solventes (estudiantes/jóvenes profesionales) de forma 100% legal bajo el Código Civil español.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-500 rounded-2xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-umbrella-beach"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-3">2. Explotación Turística</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Sistematiza el alquiler vacacional de corta estancia sin estar físicamente allí. Descubre cómo tramitar tu licencia turística en España y automatiza las entregas de llaves mediante cajetines de seguridad como <span class="font-semibold text-slate-800">Sentinel</span> y equipos de limpieza eficientes en remoto.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
+                    <div class="w-12 h-12 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <h3 class="font-bold text-xl text-slate-800 mb-3">3. Escalado Italiano</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        El motor financiero del entrenamiento. Aprende a cobrar fianza, mes de entrada y mes de salida por adelantado a tus nuevos inquilinos para recuperar casi el 100% de la inversión de decoración inicial y reinvertir inmediatamente en el siguiente piso en menos de 30 días.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Dynamic Metrics Dashboard -->
     <section id="comparativa" class="py-20 bg-slate-50 border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">LA VERDADERA COMPARATIVA</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">¿Por qué destaca la Renta Inteligente?</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">
-                    La compra inmobiliaria tradicional exige demasiado capital para un retorno mínimo. Dividimos los datos para demostrarte visualmente el impacto del modelo.
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">LA CRUDA REALIDAD DEL MERCADO</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">¿Por qué Renta Inteligente en vez de la Compra Tradicional?</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-base">
+                    Compara los datos fríos de inversión requerida y rentabilidad porcentual real en España. Los números no mienten.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Chart Box 1: Barrera de entrada -->
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-slate-100">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800">Ahorro Requerido para Empezar</h3>
-                            <p class="text-xs text-gray-400">Capital inicial mínimo en España para 1 propiedad</p>
-                        </div>
-                        <span class="text-red-500 bg-red-50 px-3 py-1 rounded-full text-xs font-bold">-93% de Barrera</span>
+            <!-- Two Independent Columns to Avoid Scale Squeezing -->
+            <div class="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                <!-- Card 1: capital -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-lg text-slate-800">Capital Inicial Requerido</h3>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-red-100 text-red-700 rounded-full">Barrera de Entrada</span>
                     </div>
-                    <div style="height: 250px; position: relative;">
+                    <div class="h-64 relative">
                         <canvas id="capitalChart"></canvas>
                     </div>
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">
+                        * El método Tradicional exige el 20% de entrada de hipoteca + 10% de gastos regulados en España sobre una vivienda promedio.
+                    </p>
                 </div>
 
-                <!-- Chart Box 2: Rentabilidad -->
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-md border border-slate-100">
-                    <div class="flex items-center justify-between mb-6">
-                        <div>
-                            <h3 class="font-bold text-lg text-slate-800">Rentabilidad Neta Anual (%)</h3>
-                            <p class="text-xs text-gray-400">Retorno porcentual sobre el dinero invertido</p>
-                        </div>
-                        <span class="text-emerald-500 bg-emerald-50 px-3 py-1 rounded-full text-xs font-bold">4.5x Mayor Retorno</span>
+                <!-- Card 2: ROI -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-extrabold text-lg text-slate-800">Rentabilidad Promedio de Operación</h3>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-successGreen/10 text-successGreen rounded-full">ROI % Estimado</span>
                     </div>
-                    <div style="height: 250px; position: relative;">
-                        <canvas id="yieldChart"></canvas>
+                    <div class="h-64 relative">
+                        <canvas id="roiChart"></canvas>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Calculator Section -->
-    <section id="calculadora" class="py-20 bg-slate-900 text-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-950 px-3 py-1 rounded-full">SIMULA TU PROPIO NEGOCIO</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Calculadora de Rentabilidad Inteligente</h2>
-                <p class="text-slate-400 max-w-2xl mx-auto">
-                    Ajusta los valores para estimar el flujo de caja neto mensual que puedes generar gestionando tu primer activo inmobiliario.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-8 items-center bg-slate-800/80 p-6 md:p-10 rounded-3xl border border-slate-700/60 shadow-2xl">
-                <!-- Inputs sliders -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <label class="text-sm font-semibold text-slate-300">Alquiler acordado al Propietario (€)</label>
-                            <span id="rentVal" class="text-emerald-400 font-bold text-lg">700€</span>
-                        </div>
-                        <input type="range" id="rentInput" min="300" max="2000" step="50" value="700" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <label class="text-sm font-semibold text-slate-300">Ingresos Totales (Habitaciones / Turístico)</label>
-                            <span id="incomeVal" class="text-emerald-400 font-bold text-lg">1.500€</span>
-                        </div>
-                        <input type="range" id="incomeInput" min="600" max="4500" step="100" value="1500" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
-                    </div>
-
-                    <div>
-                        <div class="flex justify-between mb-2">
-                            <label class="text-sm font-semibold text-slate-300">Gastos Mensuales (Suministros / Limpieza)</label>
-                            <span id="expenseVal" class="text-emerald-400 font-bold text-lg">225€</span>
-                        </div>
-                        <input type="range" id="expenseInput" min="50" max="800" step="25" value="225" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-400">
-                    </div>
-                </div>
-
-                <!-- Outputs cards -->
-                <div class="lg:col-span-5 bg-slate-950 p-8 rounded-2xl border border-slate-800 text-center flex flex-col justify-between h-full">
-                    <div>
-                        <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">FLUJO DE CAJA NETO MENSUAL</span>
-                        <div class="mt-2">
-                            <h3 id="netProfit" class="text-5xl md:text-7xl font-bold text-white mb-2">575€</h3>
-                            <p class="text-emerald-400 text-sm font-semibold"><i class="fa-solid fa-circle-check"></i> Activo altamente rentable</p>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 mt-8 pt-6 border-t border-slate-800 text-left">
-                        <div>
-                            <span class="text-xs text-slate-500 block uppercase">Margen Neto</span>
-                            <span id="marginVal" class="text-lg font-bold text-white">38%</span>
-                        </div>
-                        <div>
-                            <span class="text-xs text-slate-500 block uppercase">Retorno Anual</span>
-                            <span id="annualVal" class="text-lg font-bold text-white">6.900€</span>
-                        </div>
-                    </div>
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">
+                        * Datos promedio de rentabilidad inmobiliaria neta en España para habitaciones y explotación turística.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Course Curriculum Section -->
-    <section id="programa" class="py-20 bg-white">
+    <!-- Live Simulator / Calculator -->
+    <section id="calculadora" class="py-20 bg-white scroll-mt-20">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center mb-12">
-                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">PLAN DE ESTUDIOS</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Explora el Contenido del Entrenamiento</h2>
-                <p class="text-gray-500">
-                    Todo lo que necesitas saber desde cero para captar, rentabilizar y escalar tu cartera de Renta Inteligente en España.
-                </p>
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full">SIMULADOR EN TIEMPO REAL</span>
+                <h2 class="text-3xl font-extrabold mt-3 mb-4">Calcula tu Flujo de Caja Mensual</h2>
+                <p class="text-slate-500">Estimación realista del rendimiento neto para tu primera explotación de Renta Inteligente.</p>
             </div>
 
-            <!-- Accordion items -->
+            <div class="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl border border-slate-800 grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Precio de Alquiler al Propietario (€/mes)</label>
+                        <input type="range" id="rentInput" min="400" max="1500" step="50" value="700" class="w-full accent-stripe">
+                        <div class="flex justify-between text-sm text-slate-400 mt-1">
+                            <span>400€</span>
+                            <span class="font-bold text-white" id="rentVal">700€</span>
+                            <span>1500€</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Ingreso Estimado Subarriendo (€/mes)</label>
+                        <input type="range" id="incomeInput" min="800" max="3000" step="100" value="1500" class="w-full accent-stripe">
+                        <div class="flex justify-between text-sm text-slate-400 mt-1">
+                            <span>800€</span>
+                            <span class="font-bold text-white" id="incomeVal">1500€</span>
+                            <span>3000€</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Gastos Operativos y Suministros (€/mes)</label>
+                        <input type="range" id="expenseInput" min="100" max="600" step="20" value="250" class="w-full accent-stripe">
+                        <div class="flex justify-between text-sm text-slate-400 mt-1">
+                            <span>100€</span>
+                            <span class="font-bold text-white" id="expenseVal">250€</span>
+                            <span>600€</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center space-y-4">
+                    <span class="text-xs font-bold uppercase tracking-widest text-slate-400 block">Flujo de Caja Neto Estimado</span>
+                    <span class="text-4xl md:text-5xl font-black text-successGreen block" id="netProfit">550€ / mes</span>
+                    <div class="pt-4 border-t border-slate-700/50">
+                        <div class="flex justify-between text-xs text-slate-400 mb-1">
+                            <span>Inversión Inicial Estimada:</span>
+                            <span class="text-white font-bold">~3.000€</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-slate-400">
+                            <span>Retorno Total Estimado (1 Año):</span>
+                            <span class="text-successGreen font-bold" id="yearProfit">6.600€</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Program Breakdown -->
+    <section id="programa" class="py-20 bg-slate-50 border-t border-slate-100 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">TEMARIO COMPLETO</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">¿Qué descubrirás dentro del Advanced Training?</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">La formación definitiva estructurada paso a paso para dominar la explotación inmobiliaria en tiempo récord.</p>
+            </div>
+
             <div class="space-y-4">
-                <!-- Mod 1 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(1)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 1: Introducción a la Renta Inteligente</span>
-                        <span id="icon-1" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod1')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">1</span>
+                            Módulo 1: Tipos de Alquileres e Introducción
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod1"></i>
                     </button>
-                    <div id="module-1" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        Aprende la diferencia operativa, riesgos y ventajas reales entre el alquiler de larga estancia residencial tradicional, el alquiler vacacional turístico y la explotación de habitaciones. Definimos los cimientos de tu negocio de Renta Inteligente en España.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod1">
+                        <p>• Análisis pormenorizado de los tres enfoques clave del sector.</p>
+                        <p>• Pros, contras y riesgos calculados de la larga estancia, alquiler vacacional y habitaciones.</p>
+                        <p>• Cómo trazar el plan inmobiliario adaptado a tu capital actual.</p>
                     </div>
                 </div>
 
-                <!-- Mod 2 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(2)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 2: Alquiler Residencial y Decoración de Bajo Coste</span>
-                        <span id="icon-2" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod2')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">2</span>
+                            Módulo 2: Alquiler Residencial y Decoración Inteligente
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod2"></i>
                     </button>
-                    <div id="module-2" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        Te enseñamos cómo decorar con "buen gusto" pero gastando hasta un 50% menos. Trucos para negociar muebles, electrodomésticos con tara y mobiliario moderno pero práctico adaptado a estudiantes o profesionales independientes.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod2">
+                        <p>• Cómo perfilar y cribar inquilinos de máxima solvencia.</p>
+                        <p>• Decoración rápida: amueblar con "buen gusto" y estética comercial gastando un 50% menos.</p>
+                        <p>• El truco legal de los electrodomésticos con tara para un ahorro brutal del 40%.</p>
                     </div>
                 </div>
 
-                <!-- Mod 3 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(3)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 3: Alquiler Turístico y Automatización del Negocio</span>
-                        <span id="icon-3" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod3')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">3</span>
+                            Módulo 3: Automatización del Alquiler Turístico (Corta Estancia)
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod3"></i>
                     </button>
-                    <div id="module-3" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        La corta estancia te dará entre el 10% y el 20% de rendimiento. Descubre cómo sistematizar la entrega de llaves utilizando cajetines de seguridad como "Sentinel" y gestionando equipos de limpieza en remoto sin estar físicamente allí.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod3">
+                        <p>• Cómo tramitar y asegurar tu licencia turística sin contratiempos legales.</p>
+                        <p>• Automatización total en remoto: Check-in digital, cajetines de seguridad inteligentes y personal de limpieza.</p>
+                        <p>• Posicionamiento dinámico en plataformas (Airbnb) para lograr una ocupación del 100%.</p>
                     </div>
                 </div>
 
-                <!-- Mod 4 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(4)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 4: Alquiler por Habitaciones de Alto Rendimiento</span>
-                        <span id="icon-4" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod4')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">4</span>
+                            Módulo 4: Explotación por Habitaciones (Coliving)
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod4"></i>
                     </button>
-                    <div id="module-4" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        Aprende cómo transformar el salón de un piso para añadir dormitorios adicionales e incrementar el beneficio en más de un 30%. Cómo incluir suministros (WIFI, luz, agua) de forma inteligente controlando el gasto con termostatos bloqueados.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod4">
+                        <p>• Maximizar metros: Cómo dividir el salón mediante tabiquería de yeso (pladur) para sumar dormitorios de alto rendimiento.</p>
+                        <p>• Servicios integrados obligatorios: luz, calefacción controlada mediante termostato cerrado, internet y limpieza común semanal.</p>
                     </div>
                 </div>
 
-                <!-- Mod 5 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(5)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 5: Marco Legal, Código Civil y Tributación en España</span>
-                        <span id="icon-5" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 5 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod5')">
+                        <span class="font-bold text-stripe md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">5</span>
+                            Módulo 5: Legalidad, Fiscalidad y Tributación en España
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod5"></i>
                     </button>
-                    <div id="module-5" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white font-normal">
-                        Entiende la abismal diferencia jurídica de operar bajo el Código Civil español en lugar de la estricta Ley de Arrendamientos Urbanos (LAU). Domina la fiscalidad del subarriendo: IVA, declaración del IRPF (rendimientos de capital mobiliario) y el momento óptimo para abrir una S.L.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod5">
+                        <p>• Diferenciación técnica y práctica entre el marco regulatorio de la LAU y el Código Civil español.</p>
+                        <p>• Tributación: Cómo declarar el subarrendamiento (IRPF, exenciones y reglas del IVA).</p>
+                        <p>• Cuándo es recomendable constituir una Sociedad Limitada (S.L.) para escalar el negocio.</p>
                     </div>
                 </div>
 
-                <!-- Mod 6 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(6)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 6: Negociación con Propietarios sin Tener Dinero</span>
-                        <span id="icon-6" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 6 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod6')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">6</span>
+                            Módulo 6: Captación Inmobiliaria sin Capital
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod6"></i>
                     </button>
-                    <div id="module-6" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        Guion completo de llamada en frío para convencer a propietarios reticentes. Aprende qué ofrecer para que vean en ti un socio estratégico para cuidar de su inmueble, ofreciéndoles renta garantizada o gestión delegada a cambio de comisión.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod6">
+                        <p>• El arte de negociar con propietarios reacios aportando valor de redecoración gratuita.</p>
+                        <p>• Guiones palabra por palabra para llamadas en frío eficientes.</p>
+                        <p>• El sistema de selección natural de leads cualificados de forma automática.</p>
                     </div>
                 </div>
 
-                <!-- Mod 7 -->
-                <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
-                    <button onclick="toggleModule(7)" class="w-full p-5 bg-slate-50 hover:bg-slate-100/55 flex items-center justify-between transition text-left">
-                        <span class="font-bold text-slate-800">Módulo 7: El Sistema de Escalado Italiano en 30 Días</span>
-                        <span id="icon-7" class="text-indigo-600 font-bold">▼</span>
+                <!-- Module 7 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm">
+                    <button class="w-full flex justify-between items-center text-left" onclick="toggleAccordion('mod7')">
+                        <span class="font-bold text-slate-800 md:text-lg flex items-center gap-3">
+                            <span class="bg-indigo-50 text-stripe w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black">7</span>
+                            Módulo 7: El Sistema de Escalado Italiano en 30 Días
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-slate-400 transition" id="arrow-mod7"></i>
                     </button>
-                    <div id="module-7" class="hidden p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
-                        La regla definitiva para financiar tu expansión sin volver a usar capital propio: solicita fianza, mes de entrada y mes de salida de forma sistematizada a tus inquilinos para recuperar rápidamente la inversión de puesta a punto y reinvertir.
+                    <div class="hidden mt-4 pt-4 border-t border-slate-100 text-slate-600 text-sm space-y-2" id="mod7">
+                        <p>• Los plazos de oro: 15 días de preparación + 15 días para encontrar inquilinos.</p>
+                        <p>• La fórmula del apalancamiento: Usar fianza, mes corriente y fianza de salida de tus inquilinos para recuperar el 100% de la inversión en el día cero y reinvertir.</p>
                     </div>
                 </div>
             </div>
@@ -363,141 +431,132 @@
     </section>
 
     <!-- Testimonials / Social Proof Section -->
-    <section id="testimonios" class="py-20 bg-slate-50 border-t border-slate-100">
+    <section id="testimonios" class="py-20 bg-white scroll-mt-20">
         <div class="max-w-7xl mx-auto px-4">
             <div class="text-center mb-16">
-                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">CASOS DE ÉXITO REALES</span>
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">CASOS DE ÉXITO</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">La voz de los Inversores Inteligentes</h2>
-                <p class="text-gray-500 max-w-2xl mx-auto">
-                    Personas normales en España que superaron la barrera de la hipoteca y ya están generando ingresos pasivos reales mes tras mes.
-                </p>
+                <p class="text-slate-500 max-w-2xl mx-auto">Resultados reales de personas reales que decidieron aplicar el método en diferentes ciudades de España.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonio 1 -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm italic mb-6">
-                        "Tenía 4.000€ ahorrados y pensé que nunca entraría en inmuebles en Madrid. Encontré un piso con muebles antiguos en Getafe, negocié con el propietario y hoy gano 750€ limpios al mes con estudiantes. El módulo de legalidad fue mi salvavidas."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-indigo-100 text-indigo-700 font-bold rounded-full flex items-center justify-center text-sm">AM</div>
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 relative premium-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://placehold.co/100x100/635bff/ffffff?text=Juan" alt="Juan Carlos" class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <h4 class="font-bold text-sm text-slate-800">Adrián M.</h4>
-                            <span class="text-xs text-slate-400">Getafe, Madrid</span>
+                            <h4 class="font-bold text-slate-800 text-sm">Juan Carlos M.</h4>
+                            <span class="text-xs text-slate-400">Madrid, España 🇪🇸</span>
                         </div>
                     </div>
+                    <div class="flex gap-1 text-amber-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "Estaba asustado con la ley de vivienda en España y no quería meterme en hipotecas. Con el curso logré alquilar un piso de 3 habitaciones en Getafe, dividí el salón y hoy tengo 4 inquilinos solventes que me dejan 580€ de flujo neto al mes libres de gastos."
+                    </p>
                 </div>
 
-                <!-- Testimonio 2 -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm italic mb-6">
-                        "Lanzamos un piso turístico usando cajas de seguridad Sentinel en Valencia. Conseguimos un 85% de ocupación el primer mes con los consejos de decoración barata de César y José. Es alucinante poder automatizar la limpieza en remoto."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-indigo-100 text-indigo-700 font-bold rounded-full flex items-center justify-center text-sm">SP</div>
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 relative premium-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://placehold.co/100x100/00d46a/ffffff?text=Marta" alt="Marta G." class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <h4 class="font-bold text-sm text-slate-800">Sandra P.</h4>
-                            <span class="text-xs text-slate-400">Valencia</span>
+                            <h4 class="font-bold text-slate-800 text-sm">Marta G.</h4>
+                            <span class="text-xs text-slate-400">Valencia, España 🇪🇸</span>
                         </div>
                     </div>
+                    <div class="flex gap-1 text-amber-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "El sistema de Escalado Italiano es sencillamente una genialidad matemática. Recuperé la fianza de decoración en los primeros 10 días desde que entraron mis inquilinos. Ya tengo mi segunda vivienda en explotación turística sin haber vuelto a gastar un euro de mis ahorros personales."
+                    </p>
                 </div>
 
-                <!-- Testimonio 3 -->
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm premium-hover">
-                    <div class="flex items-center gap-1 text-amber-400 text-sm mb-4">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-slate-600 text-sm italic mb-6">
-                        "Estaba asustado con los impagos. Con el modelo de habitaciones aprendí que el Código Civil da total control contractual sobre los subarrendamientos. Ya tengo dos pisos operativos y aplico el Sistema de Escalado Italiano religiosamente."
-                    </p>
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-indigo-100 text-indigo-700 font-bold rounded-full flex items-center justify-center text-sm">JG</div>
+                <!-- Testimonial 3 -->
+                <div class="bg-slate-50 p-8 rounded-3xl border border-slate-100 relative premium-hover">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://placehold.co/100x100/635bff/ffffff?text=Sergi" alt="Sergi B." class="w-12 h-12 rounded-full object-cover">
                         <div>
-                            <h4 class="font-bold text-sm text-slate-800">Javier G.</h4>
-                            <span class="text-xs text-slate-400">Zaragoza</span>
+                            <h4 class="font-bold text-slate-800 text-sm">Sergi B.</h4>
+                            <span class="text-xs text-slate-400">Barcelona, España 🇪🇸</span>
                         </div>
                     </div>
+                    <div class="flex gap-1 text-amber-400 mb-4 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed italic">
+                        "La lección de fiscalidad y contratos bajo el Código Civil valió por sí sola cada céntimo. Negocié con un propietario un contrato de explotación turística adaptado en la zona metropolitana de Barcelona de forma 100% legal y con el consentimiento de la comunidad."
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Value Stack & Limited Offer Section -->
-    <section id="precio" class="py-20 bg-slate-900 text-white relative">
-        <div class="max-w-4xl mx-auto px-4 relative z-10">
+    <!-- Value Stack & Urgency Section -->
+    <section class="py-20 bg-slate-900 text-white border-t border-slate-800 scroll-mt-20">
+        <div class="max-w-5xl mx-auto px-4">
             <div class="text-center mb-12">
-                <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest bg-emerald-950 px-3 py-1 rounded-full">OFERTA DE LANZAMIENTO LIMITADA</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Desbloquea Todo el Sistema de Renta Inteligente</h2>
-                <p class="text-slate-400 max-w-lg mx-auto">
-                    Esto es todo lo que vas a recibir al instante en tu correo electrónico tras asegurar tu plaza digital hoy.
-                </p>
+                <span class="text-xs font-bold text-successGreen uppercase tracking-widest bg-successGreen/10 px-3 py-1.5 rounded-full">OFERTA VITALICIA DE LANZAMIENTO</span>
+                <h2 class="text-3xl md:text-5xl font-black mt-3 mb-4">Todo lo que Recibes Hoy</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">Consigue acceso inmediato al sistema de Renta Inteligente con todas sus plantillas contractuales y herramientas avanzadas de control.</p>
             </div>
 
-            <!-- Value Table -->
-            <div class="bg-slate-800 rounded-3xl border border-slate-700 overflow-hidden shadow-2xl mb-12">
-                <div class="p-6 md:p-8 space-y-4 border-b border-slate-700">
-                    <div class="flex justify-between items-center text-sm md:text-base">
-                        <span class="text-slate-300"><i class="fa-solid fa-book text-indigo-400 mr-2"></i> Manual Completo "24 Rentas en 12 Meses"</span>
-                        <span class="font-bold text-slate-400">Valor real: 299€</span>
+            <!-- Value Table / Stack -->
+            <div class="bg-slate-800/80 rounded-3xl p-6 md:p-10 border border-slate-700 max-w-4xl mx-auto shadow-2xl space-y-6">
+                <div class="flex justify-between items-center py-4 border-b border-slate-700/60 text-sm md:text-base">
+                    <span class="font-semibold text-slate-200">💎 Programa Completo: Advanced Training Renta Inteligente</span>
+                    <span class="text-slate-400 line-through">499 USD</span>
+                </div>
+                <div class="flex justify-between items-center py-4 border-b border-slate-700/60 text-sm md:text-base">
+                    <span class="font-semibold text-slate-200">📄 Plantilla Contractual Word: Explotación de Vivienda (Legales España)</span>
+                    <span class="text-slate-400 line-through">199 USD</span>
+                </div>
+                <div class="flex justify-between items-center py-4 border-b border-slate-700/60 text-sm md:text-base">
+                    <span class="font-semibold text-slate-200">📈 Plantilla Excel: Control de Gastos, Impuestos y Suministros</span>
+                    <span class="text-slate-400 line-through">149 USD</span>
+                </div>
+                <div class="flex justify-between items-center py-4 border-b border-slate-700/60 text-sm md:text-base">
+                    <span class="font-semibold text-slate-200">📊 Plantilla Excel: Presupuesto y Gestión de Marketing Digital</span>
+                    <span class="text-slate-400 line-through">199 USD</span>
+                </div>
+                <div class="flex justify-between items-center py-4 border-b border-slate-700/60 text-sm md:text-base">
+                    <span class="font-semibold text-slate-200">🛡️ Herramienta: Cuadro de Mandos Integral (CMI) para Escalar</span>
+                    <span class="text-slate-400 line-through">149 USD</span>
+                </div>
+                
+                <div class="flex flex-col md:flex-row justify-between items-center pt-8 text-center md:text-left gap-6">
+                    <div>
+                        <span class="text-xs text-slate-400 font-bold uppercase tracking-widest block mb-1">VALOR TOTAL ACUMULADO:</span>
+                        <span class="text-xl text-slate-400 line-through block font-bold">1.195 USD</span>
+                        <span class="text-xs text-red-500 font-bold uppercase block mt-1">¡Ahorras un 91% en esta convocatoria!</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm md:text-base">
-                        <span class="text-slate-300"><i class="fa-solid fa-gavel text-indigo-400 mr-2"></i> Modelos Contractuales Exclusivos (Código Civil)</span>
-                        <span class="font-bold text-slate-400">Valor real: 450€</span>
-                    </div>
-                    <div class="flex justify-between items-center text-sm md:text-base">
-                        <span class="text-slate-300"><i class="fa-solid fa-calculator text-indigo-400 mr-2"></i> Plantilla Excel: Control de Gastos e Impuestos</span>
-                        <span class="font-bold text-slate-400">Valor real: 149€</span>
-                    </div>
-                    <div class="flex justify-between items-center text-sm md:text-base">
-                        <span class="text-slate-300"><i class="fa-solid fa-bullseye text-indigo-400 mr-2"></i> Plantilla Excel: Presupuesto de Marketing</span>
-                        <span class="font-bold text-slate-400">Valor real: 99€</span>
-                    </div>
-                    <div class="flex justify-between items-center text-sm md:text-base">
-                        <span class="text-slate-300"><i class="fa-solid fa-chart-pie text-indigo-400 mr-2"></i> Cuadro de Mandos Integral (CMI) Empresarial</span>
-                        <span class="font-bold text-slate-400">Valor real: 199€</span>
+                    <div class="bg-slate-900 py-4 px-8 rounded-2xl border border-slate-700/80">
+                        <span class="text-[10px] text-slate-400 font-black uppercase tracking-wider block">PRECIO DE OFERTA EXCLUSIVO</span>
+                        <span class="text-4xl md:text-5xl font-black text-successGreen block">99 USD</span>
+                        <span class="text-[10px] text-slate-300 font-medium block mt-1">(Acceso vitalicio • Sin cuotas mensuales)</span>
                     </div>
                 </div>
 
-                <div class="p-8 bg-slate-850 text-center flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div class="text-left">
-                        <p class="text-sm text-slate-400 uppercase tracking-widest">Valor Acumulado de Mercado</p>
-                        <h4 class="text-2xl font-bold text-slate-300 line-through decoration-red-500 decoration-4">1.196€</h4>
-                        <p class="text-xs text-emerald-400 font-semibold mt-1">Ahorras más de 1.095€ hoy</p>
-                    </div>
-
-                    <div class="text-center md:text-right">
-                        <p class="text-xs text-amber-400 font-bold uppercase tracking-widest mb-1"><i class="fa-solid fa-fire"></i> PRECIO HOY (ACCESO VITALICIO)</p>
-                        <h3 class="text-5xl md:text-6xl font-extrabold text-[#00D46A]">99,00 USD</h3>
+                <!-- Secondary Evergreen Timer -->
+                <div class="pt-6 border-t border-slate-700/50 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="text-xs text-slate-400 text-center md:text-left">
+                        🔒 Pagos procesados a través de **Stripe** de forma segura. Acceso inmediato enviado a tu correo electrónico de forma automática tras el checkout.
+                    </p>
+                    <div class="flex space-x-2 items-center text-xs">
+                        <span class="inline-block w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
+                        <span class="text-slate-300">Quedan menos de <span id="secondary-timer" class="font-bold text-red-400">02:45:12</span> para el fin de esta edición.</span>
                     </div>
                 </div>
-            </div>
 
-            <!-- Limited Countdown Call to Action Stack -->
-            <div class="bg-slate-800/50 p-6 md:p-8 rounded-3xl border border-slate-700/50 text-center max-w-2xl mx-auto">
-                <p class="text-sm text-slate-300 mb-4">La ventana de oportunidad exclusiva de lanzamiento expira pronto:</p>
-                <div class="flex justify-center gap-4 mb-6">
-                    <div class="bg-indigo-600 px-4 py-2 rounded-xl text-center">
-                        <span id="timer-hours-sec" class="block font-mono font-bold text-2xl">00</span>
-                        <span class="text-[10px] uppercase text-indigo-200">Horas</span>
-                    </div>
-                    <div class="bg-indigo-600 px-4 py-2 rounded-xl text-center">
-                        <span id="timer-mins-sec" class="block font-mono font-bold text-2xl">00</span>
-                        <span class="text-[10px] uppercase text-indigo-200">Minutos</span>
-                    </div>
-                    <div class="bg-indigo-600 px-4 py-2 rounded-xl text-center">
-                        <span id="timer-secs-sec" class="block font-mono font-bold text-2xl">00</span>
-                        <span class="text-[10px] uppercase text-indigo-200">Segundos</span>
-                    </div>
-                </div>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" class="bg-[#00D46A] hover:bg-emerald-500 text-white px-8 py-4 rounded-xl font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-cart-shopping"></i> ACCEDER AL CURSO POR $99 USD
+                <!-- Main Conversion Buttons -->
+                <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://buy.stripe.com/fZu4gB4UecXqdA73F557W00" target="_blank" class="bg-successGreen hover:bg-successGreenHover text-white text-center font-black py-4 px-8 rounded-2xl shadow-xl transition-all text-lg flex items-center justify-center gap-2">
+                        🚀 SÍ, QUIERO COMPRAR EL CURSO COMPLETO AHORA
+                    </a>
+                    <a href="https://forms.gle/LT36USjZmLd5vbjb7" target="_blank" class="bg-slate-700 hover:bg-slate-600 text-white text-center font-bold py-4 px-8 rounded-2xl transition text-base">
+                        📋 Prefiero Agendar una Sesión de Calificación
                     </a>
                 </div>
             </div>
@@ -505,142 +564,165 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-white border-t border-slate-100">
+    <section id="faq" class="py-20 bg-white scroll-mt-20">
         <div class="max-w-4xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest bg-indigo-100 px-3 py-1 rounded-full">FAQ</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Preguntas Frecuentes</h2>
-                <p class="text-gray-500">Respondemos abiertamente tus dudas sobre el modelo de Renta Inteligente.</p>
+            <div class="text-center mb-16">
+                <span class="text-xs font-bold text-stripe uppercase tracking-widest bg-indigo-50 px-3 py-1.5 rounded-full">RESOLVEMOS TUS DUDAS</span>
+                <h2 class="text-3xl font-extrabold mt-3 mb-4">Preguntas Frecuentes</h2>
+                <p class="text-slate-500">¿Tienes dudas legales, fiscales o técnicas sobre la Renta Inteligente? Aquí tienes respuestas.</p>
             </div>
 
             <div class="space-y-4">
+                <!-- FAQ 1 -->
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                    <h4 class="font-bold text-slate-800 mb-2">¿Es legal subarrendar habitaciones en España?</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Sí, es 100% legal. La clave reside en no operar bajo la LAU convencional, sino bajo el Código Civil español, que otorga total flexibilidad al contrato de subarriendo, siempre que se cuente con el consentimiento explícito del propietario reflejado en el contrato primario.</p>
+                    <h4 class="font-bold text-slate-800 mb-2">¿Es legal subarrendar viviendas en España?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Sí, es 100% legal. El artículo de la Ley de Arrendamientos Urbanos (LAU) y, fundamentalmente, el Código Civil regulan el subarrendamiento. La clave es que el propietario o arrendador del inmueble lo autorice expresamente en el contrato de explotación que te entregamos en el entrenamiento.
+                    </p>
                 </div>
 
+                <!-- FAQ 2 -->
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                    <h4 class="font-bold text-slate-800 mb-2">¿Tengo que darme de alta como autónomo?</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Sí, al realizar una actividad económica de manera recurrente debes darte de alta como autónomo o constituir una sociedad para declarar tus beneficios. Te aconsejamos contratar una gestoría habitual por aproximadamente 70€ al mes para automatizar toda la contabilidad tributaria.</p>
+                    <h4 class="font-bold text-slate-800 mb-2">¿Tengo que darme de alta como autónomo para empezar?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Solo cuando comiences a tener actividad económica recurrente. Es decir, no necesitas darte de alta como autónomo para buscar propiedades. Una vez cierres tu primer piso y comiences a facturar rentas, es recomendable darte de alta o constituir una Sociedad Limitada (S.L.) si decides escalar por encima de 3 propiedades.
+                    </p>
                 </div>
 
+                <!-- FAQ 3 -->
                 <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                    <h4 class="font-bold text-slate-800 mb-2">¿Qué sucede si un inquilino de una habitación no paga?</h4>
-                    <p class="text-sm text-slate-600 leading-relaxed">Al operar bajo el Código Civil y de lo pactado libremente por contrato, el impago mensual te faculta para la resolución del contrato de forma unilateral de manera mucho más rápida, a diferencia de un contrato regular de vivienda completa bajo la LAU.</p>
+                    <h4 class="font-bold text-slate-800 mb-2">¿Qué pasa si un inquilino de una habitación no paga?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Esta es la gran ventaja del alquiler por habitaciones. No está sujeto a la LAU tradicional de larga estancia (que suele proteger al inquilino moroso durante meses), sino al Código Civil. El contrato que firmáis permite pactar que el impago durante un mes resuelve el contrato de forma unilateral y te permite denegar el acceso a la vivienda tras previa notificación legal.
+                    </p>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                    <h4 class="font-bold text-slate-800 mb-2">¿Realmente puedo empezar sin dinero?</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        El curso te enseña la metodología para captar propietarios como asesor o property manager. Puedes gestionar la redecoración y la búsqueda de inquilinos a cambio de una comisión de gestión (entre el 20% y el 35% del total de las rentas), lo que te permite acumular capital inicial sin arriesgar tu propio dinero.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive AI Chatbot Widget (Floating Bottom Right) -->
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+            <span class="text-lg font-bold text-white flex items-center justify-center gap-2">
+                <i class="fa-solid fa-hotel text-stripe"></i> Renta Inteligente
+            </span>
+            <p class="text-xs max-w-md mx-auto">
+                Todos los derechos reservados. Advanced Training Renta Inteligente, Año 2026. Procesamiento seguro de pagos a través de la pasarela Stripe con cifrado SSL.
+            </p>
+            <div class="flex justify-center space-x-6 text-xs text-slate-500 pt-4">
+                <a href="#" class="hover:text-white transition">Términos de Servicio</a>
+                <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+                <a href="#" class="hover:text-white transition">Soporte Tecnológico</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Interactive Chatbot Float Container -->
     <div class="fixed bottom-6 right-6 z-50">
-        <!-- Chat Toggle Button -->
-        <button onclick="toggleChat()" class="bg-indigo-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center text-xl hover:bg-indigo-700 transition relative">
-            <i class="fa-solid fa-comments"></i>
-            <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full text-[10px] w-5 h-5 flex items-center justify-center font-bold">1</span>
+        <button onclick="toggleChat()" class="bg-stripe hover:bg-stripeHover text-white p-4 rounded-full shadow-2xl flex items-center justify-center premium-hover focus:outline-none relative">
+            <i class="fa-solid fa-comments text-2xl" id="chat-icon"></i>
+            <span class="absolute -top-1 -right-1 flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-successGreen opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-successGreen"></span>
+            </span>
         </button>
 
-        <!-- Chat Container Window (Hidden by default) -->
-        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-[350px] md:w-[400px] h-[500px] bg-white rounded-3xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden transition-all duration-300">
+        <!-- Chat Panel hidden by default -->
+        <div id="chat-panel" class="hidden absolute bottom-16 right-0 w-[340px] md:w-[380px] bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col h-[500px]">
             <!-- Header -->
-            <div class="bg-indigo-600 text-white p-4 flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 bg-indigo-500 rounded-full flex items-center justify-center font-bold text-lg">💡</div>
+            <div class="bg-slate-900 p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-2.5 h-2.5 bg-successGreen rounded-full animate-pulse"></div>
                     <div>
-                        <h4 class="font-bold text-sm">Asistente Renta Inteligente</h4>
-                        <span class="text-xs text-indigo-200">En línea • Responde al instante</span>
+                        <h4 class="font-extrabold text-sm">Asistente Virtual Renta Inteligente</h4>
+                        <span class="text-[10px] text-slate-400">Responde en función de los Módulos del Curso</span>
                     </div>
                 </div>
-                <button onclick="toggleChat()" class="text-white hover:text-indigo-200">
-                    <i class="fa-solid fa-xmark text-lg"></i>
+                <button onclick="toggleChat()" class="text-slate-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
 
-            <!-- Messages Area -->
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 bg-slate-50 text-sm">
-                <!-- Greeting message -->
-                <div class="flex items-start space-x-2">
-                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%]">
-                        ¡Hola! Soy tu asistente de Renta Inteligente. He leído nuestro manual de 24 rentas en 12 meses. 
-                        ¿De qué tema quieres que te hable hoy? Puedes escribir abajo o pulsar una pregunta rápida:
-                    </div>
+            <!-- Messages Box -->
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-xs">
+                <div class="bg-slate-100 text-slate-800 p-3 rounded-2xl rounded-tl-none max-w-[85%]">
+                    ¡Hola! Soy tu asistente de Renta Inteligente. ¿Tienes alguna pregunta sobre el curso, la legalidad de los subarriendos en España o el Escalado Italiano?
                 </div>
-
-                <!-- Suggested Quick Questions -->
-                <div class="flex flex-col space-y-2 pl-10" id="quick-queries">
-                    <button onclick="handleQuickQuestion('¿Es legal subarrendar habitaciones en España?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
-                        ⚖️ ¿Es legal subarrendar habitaciones en España?
+                <!-- Suggested clicks -->
+                <div class="flex flex-wrap gap-2 pt-1" id="quick-questions">
+                    <button onclick="askBot('¿Es legal subarrendar en España bajo el Código Civil?')" class="bg-indigo-50 text-stripe border border-indigo-100 px-2.5 py-1.5 rounded-full hover:bg-indigo-100 transition text-[10px] font-semibold">
+                        ⚖️ ¿Es legal subarrendar?
                     </button>
-                    <button onclick="handleQuickQuestion('¿Cómo convenzo a un propietario si no tengo dinero?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
-                        🤝 ¿Cómo convenzo al propietario sin dinero?
+                    <button onclick="askBot('¿Cómo funciona el Sistema de Escalado Italiano?')" class="bg-indigo-50 text-stripe border border-indigo-100 px-2.5 py-1.5 rounded-full hover:bg-indigo-100 transition text-[10px] font-semibold">
+                        🇮🇹 Sistema Escalado Italiano
                     </button>
-                    <button onclick="handleQuickQuestion('¿Qué es el Sistema de Escalado Italiano?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
-                        🇮🇹 ¿Qué es el Sistema de Escalado Italiano?
+                    <button onclick="askBot('¿Cómo amueblar el piso gastando un 50% menos?')" class="bg-indigo-50 text-stripe border border-indigo-100 px-2.5 py-1.5 rounded-full hover:bg-indigo-100 transition text-[10px] font-semibold">
+                        🛋️ Decoración barata
                     </button>
-                    <button onclick="handleQuickQuestion('¿Tengo que darme de alta de autónomo en España?')" class="text-left text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 p-2 rounded-xl border border-indigo-100 transition">
-                        💼 ¿Tengo que ser autónomo?
+                    <button onclick="askBot('¿Qué diferencia hay entre la LAU y el Código Civil?')" class="bg-indigo-50 text-stripe border border-indigo-100 px-2.5 py-1.5 rounded-full hover:bg-indigo-100 transition text-[10px] font-semibold">
+                        🔍 LAU vs Código Civil
                     </button>
                 </div>
             </div>
 
-            <!-- Input Area -->
-            <div class="p-3 bg-white border-t flex items-center space-x-2">
-                <input type="text" id="chat-input" placeholder="Pregunta algo sobre el temario..." class="flex-1 p-3 bg-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm" onkeypress="checkEnter(event)">
-                <button onclick="sendMessage()" class="bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-xl transition">
+            <!-- Chat input form -->
+            <div class="p-3 border-t border-slate-100 bg-slate-50 flex gap-2">
+                <input type="text" id="chat-input" placeholder="Escribe tu duda aquí..." class="flex-1 px-4 py-2.5 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-stripe text-xs bg-white">
+                <button onclick="submitChat()" class="bg-stripe hover:bg-stripeHover text-white px-4 rounded-2xl flex items-center justify-center transition focus:outline-none">
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="py-12 border-t bg-slate-900 text-slate-400">
-        <div class="max-w-7xl mx-auto px-4 text-center">
-            <div class="font-bold text-white text-lg mb-2 tracking-tighter">RENTA INTELIGENTE</div>
-            <p class="text-slate-500 text-xs uppercase tracking-widest mb-8">© Año 2026 • Todos los derechos reservados</p>
-            <div class="flex justify-center space-x-6 text-sm text-slate-500 mb-6">
-                <a href="#" class="hover:text-white transition">Aviso Legal</a>
-                <a href="#" class="hover:text-white transition">Política de Privacidad</a>
-                <a href="#" class="hover:text-white transition">Cookies</a>
-            </div>
-            <p class="text-[10px] text-slate-600 max-w-md mx-auto">
-                Los contenidos formativos de este portal se basan en el marco regulado por el Código Civil español para la explotación de alquileres por habitaciones y uso turístico. Los resultados financieros mostrados son estimaciones basadas en estudios de mercado.
-            </p>
-        </div>
-    </footer>
-
+    <!-- Scripts Area -->
     <script>
-        // 1. Double charts initialization (Resolved the visual scaling compression)
-        let capitalChartInstance, yieldChartInstance;
+        // STRICT RULE EXPOSURE: Define toggleMenu directly in window object to completely avoid ReferenceError
+        window.toggleMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) {
+                menu.classList.toggle('hidden');
+            }
+        };
 
-        function initCharts() {
-            const ctxCapital = document.getElementById('capitalChart');
-            if (ctxCapital) {
-                capitalChartInstance = new Chart(ctxCapital.getContext('2d'), {
+        // ChartJS Initializers with Independent Canvas Objects to Ensure Aesthetic Scale
+        document.addEventListener("DOMContentLoaded", function() {
+            // Capital Chart Data
+            const capitalCtx = document.getElementById('capitalChart');
+            if (capitalCtx) {
+                new Chart(capitalCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['Tradicional (Compra)', 'Renta Inteligente'],
+                        labels: ['Compra Tradicional', 'Renta Inteligente'],
                         datasets: [{
-                            label: 'Inversión Mínima (€)',
+                            label: 'Capital Requerido (€)',
                             data: [45000, 3000],
                             backgroundColor: ['#94A3B8', '#635BFF'],
                             borderRadius: 12,
-                            barPercentage: 0.6
+                            borderSkipped: false
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: false },
-                            tooltip: { backgroundColor: '#1E293B' }
+                            legend: { display: false }
                         },
                         scales: {
-                            y: { 
+                            y: {
                                 beginAtZero: true,
-                                grid: { color: 'rgba(226, 232, 240, 0.4)' },
-                                ticks: { callback: value => value.toLocaleString() + '€' }
+                                grid: { color: '#F1F5F9' },
+                                ticks: {
+                                    callback: function(value) { return value.toLocaleString() + '€'; }
+                                }
                             },
                             x: { grid: { display: false } }
                         }
@@ -648,295 +730,225 @@
                 });
             }
 
-            const ctxYield = document.getElementById('yieldChart');
-            if (ctxYield) {
-                yieldChartInstance = new Chart(ctxYield.getContext('2d'), {
+            // ROI Chart Data
+            const roiCtx = document.getElementById('roiChart');
+            if (roiCtx) {
+                new Chart(roiCtx.getContext('2d'), {
                     type: 'bar',
                     data: {
-                        labels: ['Alquiler Tradicional', 'Renta Inteligente'],
+                        labels: ['Alquiler Tradicional', 'Residencial (Habitaciones)', 'Explotación Turística'],
                         datasets: [{
-                            label: 'Rentabilidad Neta Anual (%)',
-                            data: [4, 18],
-                            backgroundColor: ['#94A3B8', '#00D46A'],
+                            label: 'ROI % Estimado',
+                            data: [4, 15, 30],
+                            backgroundColor: ['#94A3B8', '#635BFF', '#00D46A'],
                             borderRadius: 12,
-                            barPercentage: 0.6
+                            borderSkipped: false
                         }]
                     },
                     options: {
                         responsive: true,
                         maintainAspectRatio: false,
                         plugins: {
-                            legend: { display: false },
-                            tooltip: { backgroundColor: '#1E293B' }
+                            legend: { display: false }
                         },
                         scales: {
-                            y: { 
+                            y: {
                                 beginAtZero: true,
-                                grid: { color: 'rgba(226, 232, 240, 0.4)' },
-                                ticks: { callback: value => value + '%' }
+                                grid: { color: '#F1F5F9' },
+                                ticks: {
+                                    callback: function(value) { return value + '%'; }
+                                }
                             },
                             x: { grid: { display: false } }
                         }
                     }
                 });
             }
-        }
 
-        // 2. Interactive ROI Calculator with robust DOM safeguards
-        const rentInput = document.getElementById('rentInput');
-        const incomeInput = document.getElementById('incomeInput');
-        const expenseInput = document.getElementById('expenseInput');
-
-        function updateCalculator() {
-            if (!rentInput || !incomeInput || !expenseInput) return;
-
-            const rent = parseInt(rentInput.value);
-            const income = parseInt(incomeInput.value);
-            const expense = parseInt(expenseInput.value);
-
-            const rentValEl = document.getElementById('rentVal');
-            const incomeValEl = document.getElementById('incomeVal');
-            const expenseValEl = document.getElementById('expenseVal');
-
-            if (rentValEl) rentValEl.innerText = rent.toLocaleString() + '€';
-            if (incomeValEl) incomeValEl.innerText = income.toLocaleString() + '€';
-            if (expenseValEl) expenseValEl.innerText = expense.toLocaleString() + '€';
-
-            const profit = income - rent - expense;
-            const profitEl = document.getElementById('netProfit');
+            // Interactive Calculator Logic
+            const rentInput = document.getElementById('rentInput');
+            const incomeInput = document.getElementById('incomeInput');
+            const expenseInput = document.getElementById('expenseInput');
             
-            if (profitEl) {
-                profitEl.innerText = profit.toLocaleString() + '€';
-                if (profit < 0) {
-                    profitEl.className = "text-5xl md:text-7xl font-bold mb-2 text-red-400";
-                } else {
-                    profitEl.className = "text-5xl md:text-7xl font-bold mb-2 text-white";
+            const rentVal = document.getElementById('rentVal');
+            const incomeVal = document.getElementById('incomeVal');
+            const expenseVal = document.getElementById('expenseVal');
+            
+            const netProfit = document.getElementById('netProfit');
+            const yearProfit = document.getElementById('yearProfit');
+
+            function updateCalculator() {
+                if (rentInput && incomeInput && expenseInput) {
+                    const rent = parseInt(rentInput.value);
+                    const income = parseInt(incomeInput.value);
+                    const expense = parseInt(expenseInput.value);
+
+                    if (rentVal) rentVal.innerText = rent + '€';
+                    if (incomeVal) incomeVal.innerText = income + '€';
+                    if (expenseVal) expenseVal.innerText = expense + '€';
+
+                    const net = income - rent - expense;
+                    if (netProfit) {
+                        netProfit.innerText = net + '€ / mes';
+                        if (net < 0) {
+                            netProfit.classList.add('text-red-500');
+                            netProfit.classList.remove('text-successGreen');
+                        } else {
+                            netProfit.classList.add('text-successGreen');
+                            netProfit.classList.remove('text-red-500');
+                        }
+                    }
+                    if (yearProfit) yearProfit.innerText = (net * 12) + '€';
                 }
             }
-            
-            const margin = income > 0 ? ((profit / income) * 100).toFixed(0) : 0;
-            const marginValEl = document.getElementById('marginVal');
-            if (marginValEl) marginValEl.innerText = margin + '%';
-            
-            const annualValEl = document.getElementById('annualVal');
-            if (annualValEl) annualValEl.innerText = (profit * 12).toLocaleString() + '€';
-        }
 
-        if (rentInput && incomeInput && expenseInput) {
-            [rentInput, incomeInput, expenseInput].forEach(el => el.addEventListener('input', updateCalculator));
-        }
+            if (rentInput) rentInput.addEventListener('input', updateCalculator);
+            if (incomeInput) incomeInput.addEventListener('input', updateCalculator);
+            if (expenseInput) expenseInput.addEventListener('input', updateCalculator);
 
-        // 3. Module Accordion Handler
-        function toggleModule(id) {
-            const el = document.getElementById('module-' + id);
-            const icon = document.getElementById('icon-' + id);
-            if (!el || !icon) return;
+            updateCalculator();
+        });
 
-            const isHidden = el.classList.contains('hidden');
-            
-            // Close others first for seamless accordion logic
-            for (let i = 1; i <= 7; i++) {
-                const otherMod = document.getElementById('module-' + i);
-                const otherIcon = document.getElementById('icon-' + i);
-                if (otherMod) otherMod.classList.add('hidden');
-                if (otherIcon) otherIcon.innerText = '▼';
-            }
-
-            if (isHidden) {
-                el.classList.remove('hidden');
-                icon.innerText = '▲';
+        // Accordion Controls
+        function toggleAccordion(id) {
+            const el = document.getElementById(id);
+            const arrow = document.getElementById('arrow-' + id);
+            if (el && arrow) {
+                el.classList.toggle('hidden');
+                arrow.classList.toggle('rotate-180');
             }
         }
+        window.toggleAccordion = toggleAccordion;
 
-        // 4. Mobile Navigation Menu Toggle
-        function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden');
+        // Universal Persistent Evergreen Timer
+        let totalSeconds = localStorage.getItem('renta_inteligente_seconds') || (2 * 3600 + 45 * 60 + 12);
+        
+        function updateTimer() {
+            totalSeconds--;
+            if (totalSeconds <= 0) {
+                totalSeconds = 2 * 3600 + 45 * 60 + 12; // resets evergreen loop
+            }
+            localStorage.setItem('renta_inteligente_seconds', totalSeconds);
+
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            const pad = (num) => String(num).padStart(2, '0');
+
+            const hEl = document.getElementById('timer-hours');
+            const mEl = document.getElementById('timer-mins');
+            const sEl = document.getElementById('timer-secs');
+            const secEl = document.getElementById('secondary-timer');
+
+            if (hEl) hEl.innerText = pad(hours);
+            if (mEl) mEl.innerText = pad(minutes);
+            if (sEl) sEl.innerText = pad(seconds);
+            if (secEl) secEl.innerText = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
         }
 
-        // 5. Chatbot Interface Toggle
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // Chatbot Panel Controller
         function toggleChat() {
-            const chatWin = document.getElementById('chat-window');
-            if (chatWin) chatWin.classList.toggle('hidden');
-        }
-
-        function checkEnter(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
+            const panel = document.getElementById('chat-panel');
+            const icon = document.getElementById('chat-icon');
+            if (panel && icon) {
+                panel.classList.toggle('hidden');
+                icon.classList.toggle('fa-comments');
+                icon.classList.toggle('fa-chevron-down');
             }
         }
+        window.toggleChat = toggleChat;
 
-        // 6. Countdown Timer Logic (Evergreen 4 Hours)
-        function startCountdown() {
-            let targetTime = localStorage.getItem('renta_inteligente_target');
-            
-            if (!targetTime) {
-                targetTime = new Date().getTime() + (4 * 60 * 60 * 1000);
-                localStorage.setItem('renta_inteligente_target', targetTime);
-            } else {
-                targetTime = parseInt(targetTime);
-                if (new Date().getTime() > targetTime) {
-                    targetTime = new Date().getTime() + (4 * 60 * 60 * 1000);
-                    localStorage.setItem('renta_inteligente_target', targetTime);
-                }
-            }
-
-            function updateTimer() {
-                const now = new Date().getTime();
-                const difference = targetTime - now;
-
-                if (difference <= 0) {
-                    const newTarget = new Date().getTime() + (4 * 60 * 60 * 1000);
-                    localStorage.setItem('renta_inteligente_target', newTarget);
-                    return;
-                }
-
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                const formattedHours = hours.toString().padStart(2, '0');
-                const formattedMins = minutes.toString().padStart(2, '0');
-                const formattedSecs = seconds.toString().padStart(2, '0');
-
-                // Safeguarded DOM updates for Header Timer
-                const hoursEl = document.getElementById('timer-hours');
-                const minsEl = document.getElementById('timer-mins');
-                const secsEl = document.getElementById('timer-secs');
-                if (hoursEl) hoursEl.innerText = formattedHours;
-                if (minsEl) minsEl.innerText = formattedMins;
-                if (secsEl) secsEl.innerText = formattedSecs;
-
-                // Safeguarded DOM updates for Value Stack Timer
-                const hoursSecEl = document.getElementById('timer-hours-sec');
-                const minsSecEl = document.getElementById('timer-mins-sec');
-                const secsSecEl = document.getElementById('timer-secs-sec');
-                if (hoursSecEl) hoursSecEl.innerText = formattedHours;
-                if (minsSecEl) minsSecEl.innerText = formattedMins;
-                if (secsSecEl) secsSecEl.innerText = formattedSecs;
-            }
-
-            updateTimer();
-            setInterval(updateTimer, 1000);
-        }
-
-        // 7. Conversational AI Rules & Data Retrieval
-        const chatReplies = [
+        // Structured PDF Q&A Knowledge Base
+        const kb = [
             {
-                keywords: ['legal', 'ley', 'código civil', 'civil', 'lau', 'contrato', 'explotación', 'fianza'],
-                reply: "<b>⚖️ Legalidad bajo el Código Civil:</b><br>En el subarriendo de habitaciones en España, no nos regimos por la LAU, sino por el Código Civil. Esto te permite tener un contrato totalmente personalizado y flexible, donde el impago durante un mes te da derecho a resolver el contrato unilateralmente de manera mucho más ágil. La fianza se recupera rápido y la exención del IVA aplica si los inquilinos lo usan puramente para vivienda permanente (sin servicios de hostelería)."
+                keywords: ['legal', 'ley', 'codigo civil', 'seguro', 'contrato'],
+                answer: "¡Excelente pregunta! Bajo el Código Civil español (artículos 1550 en adelante), el subarriendo es plenamente válido siempre y cuando no esté explícitamente prohibido en el contrato original. En el Advanced Training te entregamos el modelo exacto de contrato de 'explotación de vivienda' autorizado y revisado por profesionales jurídicos para protegerte en España."
             },
             {
-                keywords: ['dinero', 'capital', 'comprar', 'sin dinero', 'entrada', 'financia', 'inversión'],
-                reply: "<b>🤝 Hacerlo Sin Dinero o Con Bajo Capital:</b><br>A diferencia de la compra inmobiliaria (donde necesitas mínimo 45k€), en la <b>Renta Inteligente</b> entras como gestor o inquilino. Si no tienes dinero de inversión, ofreces al propietario un servicio de asesor o 'Property Manager' donde tú consigues los huéspedes y te llevas del 20% al 35% de comisión por gestionar el coliving. Si pones el capital tú, con solo ~3.000€ puedes decorar el piso (Home Staging de bajo coste) y lanzar la actividad."
+                keywords: ['escalado', 'italiano', 'fianza', 'financiar', '30 dias', 'recuperar'],
+                answer: "El Sistema de Escalado Italiano consiste en cobrar por adelantado: Fianza (para desperfectos), Mes de Entrada y Mes de Salida. Esto suma un total de 3 meses que recuperas desde el primer día que entran tus inquilinos, devolviéndote casi el 100% de la adecuación de pintura y muebles para inyectarlo en tu siguiente piso en menos de 30 días."
             },
             {
-                keywords: ['escalado', 'italiano', 'sistema italiano', 'reinversión', 'escalar', '30 días'],
-                reply: "<b>🇮🇹 El Sistema de Escalado Italiano:</b><br>Consiste en cobrar de tus inquilinos un pack de entrada: 1 mes de fianza, el mes en curso y un mes de salida por adelantado. Si tienes 4 habitaciones de las cuales facturas 1.600€ en total, nada más empezar cobras 4.800€ del primer grupo. Este capital te sirve para recuperar casi el 100% de la inversión inicial de reforma (~5.000€) y reinvertirlo en el siguiente activo. ¡El dinero trabaja para tu expansión!"
+                keywords: ['decoracion', 'ahorrar', 'tara', 'muebles', 'ikea'],
+                answer: "Para ahorrar un 50% en decoración en España, recurrimos a grandes superficies buscando artículos prácticos y a plataformas de segunda mano para escritorios de estudiantes. En electrodomésticos, el truco es buscarlos en tiendas especializadas de 'con tara' (con un pequeño raspón que no afecta su uso), lo que reduce el coste del producto hasta un 40%."
             },
             {
-                keywords: ['autónomo', 'empresa', 'gestoría', 'factura', 'iva', 'irpf', 'sociedad', 's.l.'],
-                reply: "<b>💼 Gestión Tributaria y Alta:</b><br>Al principio no necesitas constituirte como empresa. Puedes operar como autónomo declarando tus ingresos en el IRPF como rendimientos del capital mobiliario (pestaña general). Una vez que gestiones más de 3 viviendas activos, te aconsejamos crear una S.L. para optimizar la carga impositiva. Una gestoría habitual por 70€ al mes te solventará toda la contabilidad."
+                keywords: ['lau', 'diferencia', 'impago', 'habitacion'],
+                answer: "El alquiler de habitaciones no se rige por la LAU tradicional, sino por el Código Civil. Esto te da una ventaja de oro: en caso de impago, no dependes del lento proceso judicial habitual. El contrato estipula que un mes de impago disuelve el contrato unilateralmente, facultando al property manager para restringir la entrada a la habitación."
             },
             {
-                keywords: ['propietario', 'llamada', 'llamada en frío', 'negociar', 'guión', 'reunión'],
-                reply: "<b>📞 Negociación y Captación de Propietarios:</b><br>Buscamos pisos con muebles antiguos o sin encanto. Nuestra mejor propuesta para el propietario es garantizarle:<br>1. Una redecoración completa del inmueble (revalorizándolo gratis para él).<br>2. Estabilidad de contrato de larga duración.<br>3. Mantenimiento premium asegurado por nosotros. En el curso te proporcionamos el guion telefónico exacto para programar reuniones físicas altamente eficientes."
-            },
-            {
-                keywords: ['turístico', 'vacacional', 'airbnb', 'licencia', 'caja de seguridad', 'llaves'],
-                reply: "<b>🏖️ Modelo Turístico y Automatización:</b><br>El alquiler turístico ofrece rentabilidades del 10% al 20%. Exige conseguir la licencia turística municipal en zonas habilitadas en España. Lo automatizamos instalando cajetines de seguridad (como Sentinel de pared, ~37€) y enviando videos de acceso por correo o WhatsApp. Esto te ahorra tiempo físico de entrega de llaves y permite delegar la limpieza tras cada check-out."
+                keywords: ['turistico', 'vacacional', 'licencia', 'cajetin', 'sentinel'],
+                answer: "La explotación vacacional permite una rentabilidad del 10% al 20%. Para sistematizarlo sin estar presente, el documento enseña a automatizar la entrega de llaves instalando un cajetín de seguridad numérico como Sentinel en la fachada, y coordinar en remoto el servicio de limpieza delegando la puesta a punto."
             }
         ];
 
-        function handleQuickQuestion(questionText) {
-            const messagesContainer = document.getElementById('chat-messages');
-            if (!messagesContainer) return;
+        function askBot(question) {
+            const chatMessages = document.getElementById('chat-messages');
+            if (!chatMessages) return;
 
-            const userMsgHtml = `
-                <div class="flex items-end justify-end space-x-2">
-                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
-                        ${questionText}
-                    </div>
-                </div>
-            `;
-            messagesContainer.insertAdjacentHTML('beforeend', userMsgHtml);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            // Render User message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-stripe text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] self-end ml-auto mb-2';
+            userMsg.innerText = question;
+            chatMessages.appendChild(userMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            simulateBotResponse(questionText.toLowerCase());
-        }
+            // Typing indicator
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'text-slate-400 italic text-[10px] mb-2';
+            loadingMsg.id = 'bot-loading';
+            loadingMsg.innerText = 'Escribiendo respuesta...';
+            chatMessages.appendChild(loadingMsg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            if (!input) return;
-
-            const query = input.value.trim();
-            if (!query) return;
-
-            const messagesContainer = document.getElementById('chat-messages');
-            if (!messagesContainer) return;
-
-            const userMsgHtml = `
-                <div class="flex items-end justify-end space-x-2">
-                    <div class="bg-indigo-600 text-white p-3 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">
-                        ${query}
-                    </div>
-                </div>
-            `;
-            messagesContainer.insertAdjacentHTML('beforeend', userMsgHtml);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            input.value = '';
-
-            simulateBotResponse(query.toLowerCase());
-        }
-
-        function simulateBotResponse(userQuery) {
-            const messagesContainer = document.getElementById('chat-messages');
-            if (!messagesContainer) return;
-            
-            const typingId = 'typing-' + Date.now();
-            const typingHtml = `
-                <div class="flex items-start space-x-2" id="${typingId}">
-                    <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
-                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%] italic text-gray-400">
-                        Escribiendo respuesta...
-                    </div>
-                </div>
-            `;
-            messagesContainer.insertAdjacentHTML('beforeend', typingHtml);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            let responseText = "Entiendo tu pregunta. Para responderte con exactitud, los temas más importantes del curso son la <b>Legalidad en España (Código Civil)</b>, cómo convencer al <b>Propietario</b> sin dinero inicial, o el funcionamiento del <b>Sistema Italiano de Escalado</b>. ¿Te gustaría profundizar en alguno?";
-            
-            for (let rule of chatReplies) {
-                if (rule.keywords.some(kw => userQuery.includes(kw))) {
-                    responseText = rule.reply;
-                    break;
-                }
-            }
-
+            // Filter answer using basic NLP keyword mapping
             setTimeout(() => {
-                const indicator = document.getElementById(typingId);
-                if (indicator) indicator.remove();
+                const loading = document.getElementById('bot-loading');
+                if (loading) loading.remove();
 
-                const botMsgHtml = `
-                    <div class="flex items-start space-x-2 animate-fade-in">
-                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-xs">🤖</div>
-                        <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm max-w-[80%] text-slate-700 leading-relaxed font-normal">
-                            ${responseText}
-                        </div>
-                    </div>
-                `;
-                messagesContainer.insertAdjacentHTML('beforeend', botMsgHtml);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                const normalizedQ = question.toLowerCase();
+                let matchedAns = "Esa es una pregunta muy interesante. El temario del Advanced Training de Renta Inteligente cubre desde las diferencias legales de la LAU y el Código Civil, hasta la optimización por habitaciones y explotación turística. Te sugerimos revisar el desglose del programa o acceder hoy mismo para dominar el método.";
+
+                for (const item of kb) {
+                    if (item.keywords.some(kw => normalizedQ.includes(kw))) {
+                        matchedAns = item.answer;
+                        break;
+                    }
+                }
+
+                // Render Bot message
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-slate-100 text-slate-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] mb-2';
+                botMsg.innerText = matchedAns;
+                chatMessages.appendChild(botMsg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }, 1000);
         }
+        window.askBot = askBot;
 
-        // On window load trigger
-        window.onload = () => {
-            initCharts();
-            updateCalculator();
-            startCountdown();
-        };
+        function submitChat() {
+            const chatInput = document.getElementById('chat-input');
+            if (chatInput && chatInput.value.trim() !== "") {
+                const query = chatInput.value.trim();
+                chatInput.value = "";
+                askBot(query);
+            }
+        }
+        window.submitChat = submitChat;
+
+        // Bind enter key inside chatbot input
+        const chatInput = document.getElementById('chat-input');
+        if (chatInput) {
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    submitChat();
+                }
+            });
+        }
     </script>
 </body>
 </html>
